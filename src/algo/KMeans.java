@@ -1,14 +1,45 @@
 package algo;
 
-
+/**
+ * k-means clustering algorithm.
+ * Creates k-clusters and approximates (or solves) their optimal positions
+ * after a chosen amount of iterations.
+ * Assigns data points to the approximated (solved) clusters
+ * @author duttonl
+ *
+ */
 public class KMeans {
 
 	private static final int N = 2; // represents length of the (x,y) coordinate
 	
 	// unit testing goes here. Use StdRandom to shuffle any input!
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		double[][] items = {{1.0,1.0},{3.0,3.0},{10.0,10.0}};
+		
+		int k = 3;
+		
+		double[][] means = calculateMeans(3, items, 100000);
+		double[][][] clusters = assignToClusters(means,items);
+		
+		// Check mean clusters; note that output changes due to randomization
+		for (int i = 0; i < k; i++) {
+			for (int j = 0; j < N; j++) {
+				System.out.print(means[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+		// Check cluster elements
+		// Note that due to lack of array resizing, there may be "garbage" points
+		// in each array cluster
+		for (int i = 0; i < k; i++) {
+			for (int j = 0; j < items.length; j++) {
+				for (int p = 0; p < N; p++)
+					System.out.print(clusters[i][j][p] + " ");
+				System.out.print(",");
+			}
+			System.out.println();
+		}
 	}
 
 	/**
@@ -82,6 +113,13 @@ public class KMeans {
 		
 	}
 	
+	/**
+	 * Updates the mean of selected cluster after adding a point to it
+	 * @param size The size of the cluster
+	 * @param mean The mean point to update
+	 * @param item The new item added to the cluster
+	 * @return The updated mean
+	 */
 	private static double[] updateMean(int size, double[] mean, double[] item) {
 		for (int i = 0; i < N; i++) {
 			double m = mean[i];
@@ -93,6 +131,12 @@ public class KMeans {
 		return mean;
 	}
 	
+	/**
+	 * Classify items based on their distance to the nearest cluster
+	 * @param means The cluster mean points
+	 * @param item The item to classify
+	 * @return The index of the mean which the iteam is classified to
+	 */
 	private static int classify(double[][] means, double[] item) {
 		
 		double min = Integer.MAX_VALUE;
@@ -112,6 +156,12 @@ public class KMeans {
 
 	}
 	
+	/**
+	 * Assign each data point to a cluster based on nearest distance to mean
+	 * @param means The mean of each cluster
+	 * @param items The items to assign 
+	 * @return The items that are assigned to the corresponding mean's index
+	 */
 	public static double[][][] assignToClusters(double[][] means, double[][] items){
 		// array storing increments
 		int[] inc = new int[means.length];
@@ -132,6 +182,14 @@ public class KMeans {
 		
 		return clusters;
 	}
+	
+	/**
+	 * Calculates the mean cluster points
+	 * @param k The amount of clusters needed
+	 * @param items The items used to calculate mean clusters
+	 * @param maxIterations Infinite loop termination condition
+	 * @return The calculated mean cluster points
+	 */
 	public static double[][] calculateMeans(int k, double[][] items, int maxIterations){
 		double[] cMin = findColsMin(items), cMax = findColsMax(items);
 		double[][] means = initMeans(items, k, cMin, cMax);

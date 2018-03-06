@@ -186,10 +186,10 @@ public class KMeans {
 	 * @param maxIterations Infinite loop termination condition
 	 * @return The calculated mean cluster points
 	 */
-	public static double[][] calculateMeans(int k, Cord[] items, int maxIterations){
+	public static Cord[] calculateMeans(int k, Cord[] items, int maxIterations){
 		Cord cMin = findColsMin(items), cMax = findColsMax(items);
-		double[][] means = initMeans(items, k, cMin, cMax);
-		double[] item; boolean noChanges;
+		Cord[] means = initMeans(items, k, cMin, cMax);
+		Cord item; boolean noChanges;
 		
 		int[] clusterSizes = new int[means.length];
 		int[] belongs = new int[items.length];

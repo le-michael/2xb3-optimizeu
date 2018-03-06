@@ -39,6 +39,8 @@ class Surface extends JPanel implements ActionListener {
     private void doDrawing(Graphics g) {
     	Random rand = new Random();
         Graphics2D g2d = (Graphics2D) g;
+        
+        g2d.fillRect(0, 0, getWidth(), getHeight());
 
        boolean done = false;
        int count = 0;
@@ -82,6 +84,9 @@ public class DisplayClusters extends JFrame {
 	private Timer time;
 	private int REFRESH = 1; 
 	
+	
+	
+	
 	Cluster [] clusters;
     public DisplayClusters(Cluster[] c) {
     	clusters = c;
@@ -104,25 +109,4 @@ public class DisplayClusters extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public static void main(String[] args) {
-    	
-    	Random rand = new Random();
-    	Cluster c0 = new Cluster(100,100);
-    	for (int i = 0; i < 100; i ++) {
-    		c0.insertCord(new Cord(rand.nextDouble()*100,rand.nextDouble()*100));
-    	}
-    	
-    	Cluster c1 = new Cluster(200,200);
-    	for (int i = 0; i < 100; i ++) {
-    		c1.insertCord(new Cord(200+ rand.nextDouble()*200,200+rand.nextDouble()*200));
-    	}
-    	
-    	Cluster[] cArr = new Cluster[2];
-    	cArr[0] = c0; 
-    	cArr[1] = c1;
-
-        DisplayClusters ex = new DisplayClusters(cArr);
-        ex.setVisible(true);
-
-    }
 }

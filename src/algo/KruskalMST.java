@@ -1,3 +1,5 @@
+package algo;
+
 import java.util.Arrays;
 
 public class KruskalMST {
@@ -35,6 +37,7 @@ public class KruskalMST {
 	            uf.union(v, w);  // merge v and w components
 	            mst[j] = e;  // add edge e to mst
 	            weight += e.weight();
+	            j++;
 	       }
 	}	
 }
@@ -42,7 +45,7 @@ public class KruskalMST {
 	public static void main(String[] args) {
 		
 		V1 = new int[] {1,2,3,4};
-		V2 = new int[] {2,3,4,4};
+		V2 = new int[] {2,3,4,1};
 		W = new int[]{4,5,5,10};
 		KruskalMST mst = new KruskalMST();
 		

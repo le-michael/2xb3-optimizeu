@@ -2,11 +2,11 @@ package algo;
 
 public class Cord {
 	
-	private float xc;
-	private float yc;
+	private double xc;
+	private double yc;
 	private Cord next;
 
-	public Cord(float x, float y) {
+	public Cord(double x, double y) {
 		xc = x;
 		yc = y;
 		next = null;
@@ -21,14 +21,22 @@ public class Cord {
 		return next;
 	}
 	
-	public float getX() {
+	public double getX() {
 		return xc;
 	}
 	
-	public float getY() {
+	public double getY() {
 		return yc;
 	}
 	
+	public void setX(double x) {
+		xc = x;
+	}
+	
+	
+	public void setY(double y) {
+		yc = y;
+	}
 	public String toString() {
 		
 		return "(" + String.valueOf(xc) + "," + String.valueOf(yc) + ")";

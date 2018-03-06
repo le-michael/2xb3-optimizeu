@@ -1,5 +1,7 @@
 package algo;
 
+import java.util.Random;
+
 /**
  * k-means clustering algorithm.
  * Creates k-clusters and approximates (or solves) their optimal positions
@@ -14,11 +16,11 @@ public class KMeans {
 	
 	// unit testing goes here. Use StdRandom to shuffle any input!
 	public static void main(String[] args) {
-		double[][] items = {{1.0,1.0},{3.0,3.0},{10.0,10.0}};
+		double[][] items = {{1.0,1.0},{3.0,3.0},{10.0,10.0},{12.0,12.0}};
 		
-		int k = 3;
+		int k = 4;
 		
-		double[][] means = calculateMeans(3, items, 100000);
+		double[][] means = calculateMeans(4, items, 100000);
 		double[][][] clusters = assignToClusters(means,items);
 		
 		// Check mean clusters; note that output changes due to randomization
@@ -47,15 +49,14 @@ public class KMeans {
 	 * @param items The array of coordinates
 	 * @return The minima of the input coordinates
 	 */
-	private static double[] findColsMin(double[][] items) {
-		double[] minima = {Integer.MAX_VALUE, Integer.MAX_VALUE};
+	private static Cord findColsMin(Cord[] items) {
+		Cord minima = new Cord(Integer.MAX_VALUE, Integer.MAX_VALUE);
 		
-		for (double[] item : items) {
-			for (int i = 0; i < N; i++) {
-				if (item[i] < minima[i]) {
-	                minima[i] = item[i];
-				}
-			}
+		for (Cord item : items) {
+			if (item.getY() < minima.getY())
+				minima.setY(item.getY());
+			if (item.getX() < minima.getX())
+				minima.setX(item.getX());
 		}
 		
 		return minima;
@@ -66,15 +67,14 @@ public class KMeans {
 	 * @param items The array of coordinates
 	 * @return The maxima of the input coordinates
 	 */
-	private static double[] findColsMax(double[][] items) {
-		double[] maxima = {Integer.MIN_VALUE, Integer.MIN_VALUE};
+	private static Cord findColsMax(Cord[] items) {
+		Cord maxima = new Cord(Integer.MIN_VALUE, Integer.MIN_VALUE);
 		
-		for (double[] item : items) {
-			for (int i = 0; i < N; i++) {
-				if (item[i] > maxima[i]) {
-	                maxima[i] = item[i];
-				}
-			}
+		for (Cord item : items) {
+			if (item.getY() > maxima.getY())
+				maxima.setY(item.getY());
+			if (item.getX() > maxima.getX())
+				maxima.setX(item.getX());
 		}
 		
 		return maxima;
@@ -86,10 +86,9 @@ public class KMeans {
 	 * @param b The second coordinate
 	 * @return The distance between a and b
 	 */
-	private static double dist(double[] a, double[] b) {
+	private static double dist(Cord a, Cord b) {
 		double sum = 0;
-		for (int i = 0; i < N; i++)
-			sum += Math.pow(b[i]-a[i], 2);
+		sum += Math.pow(a.getX() + b.getX(), 2) + Math.pow(a.getY() + b.getY(),2);
 		return Math.sqrt(sum);
 	}
 	
@@ -101,14 +100,17 @@ public class KMeans {
 	 * @param cMax The maxima of the dataset
 	 * @return The coordinates of the means stored in an array
 	 */
-	private static double[][] initMeans(double[][] items, int k, double[] cMin, double[] cMax){
-		double[][] means = new double[k][N];
-		for (double[] mean : means) {
-			for (int i = 0; i < N; i++)
-				// Note: +/- 1 narrows down the placement of initial mean spots
-				mean[i] = StdRandom.uniform(cMin[i]+1,cMax[i]-1);
-		}
+	private static Cord[] initMeans(Cord[] items, int k, Cord cMin, Cord cMax){
+		Cord[] means = new Cord[k];
 		
+		Random rand = new Random();
+		
+			for (int i = 0; i < k; i++) {
+				// Note: +/- 1 narrows down the placement of initial mean spots
+				// mean[i] = StdRandom.uniform(cMin[i]+1,cMax[i]-1);
+				means[i].setX(cMin.getX() + rand.nextDouble() * ( cMax.getX() - cMin.getX()));
+				means[i].setY(cMin.getY() + rand.nextDouble() * ( cMax.getY() - cMin.getY()));
+			}
 		return means;
 		
 	}
@@ -120,15 +122,13 @@ public class KMeans {
 	 * @param item The new item added to the cluster
 	 * @return The updated mean
 	 */
-	private static double[] updateMean(int size, double[] mean, double[] item) {
-		for (int i = 0; i < N; i++) {
-			double m = mean[i];
-			// new avg = (old avg + item) / new size
-			m = (m*(size-1)+item[i])/size;
-			mean[i] = Math.round(m*1000.0)/1000.0;
-		}
+	private static Cord updateMean(int size, Cord mean, Cord item) {
+		Cord m = new Cord(0,0);
+		// new avg = (old avg + item) / new size
+		m.setX((mean.getX()*(size-1)+item.getX())/size);
+		m.setY((mean.getY()*(size-1)+item.getY())/size);
 		
-		return mean;
+		return m;
 	}
 	
 	/**
@@ -137,14 +137,14 @@ public class KMeans {
 	 * @param item The item to classify
 	 * @return The index of the mean which the iteam is classified to
 	 */
-	private static int classify(double[][] means, double[] item) {
+	private static int classify(Cord[] means, Cord item) {
 		
 		double min = Integer.MAX_VALUE;
 		int index = - 1;
 		double distance;
 		
 		for (int i = 0; i < means.length; i++) {
-			distance = dist(item, means[i]); 
+			distance = dist(means[i], item); 
 			
 			if (distance < min) {
 				min = distance;
@@ -162,22 +162,18 @@ public class KMeans {
 	 * @param items The items to assign 
 	 * @return The items that are assigned to the corresponding mean's index
 	 */
-	public static double[][][] assignToClusters(double[][] means, double[][] items){
-		// array storing increments
-		int[] inc = new int[means.length];
+	public static Cluster[] assignToClusters(Cord[] means, Cord[] items){
+		Cluster[] clusters = new Cluster[means.length];
 		
-		// 2nd dimension should be done with array resizing..
-		double[][][] clusters = new double[means.length][items.length][N];
-		
-		// set initial increments to zero
-		for (int i = 0; i < inc.length; i++)
-			inc[i] = 0;
+		for (int i = 0; i < means.length; i++) {
+			clusters[i] = new Cluster(means[i].getX(), means[i].getY());
+		}
 		
 		int index;
-		for (double[] item : items) {
+		for (Cord item : items) {
 			// find cluster to associate item to
 			index = classify(means, item);
-			clusters[index][inc[index]++] = item;
+			clusters[index].insertCord(item);
 		}
 		
 		return clusters;
@@ -190,8 +186,8 @@ public class KMeans {
 	 * @param maxIterations Infinite loop termination condition
 	 * @return The calculated mean cluster points
 	 */
-	public static double[][] calculateMeans(int k, double[][] items, int maxIterations){
-		double[] cMin = findColsMin(items), cMax = findColsMax(items);
+	public static double[][] calculateMeans(int k, Cord[] items, int maxIterations){
+		Cord cMin = findColsMin(items), cMax = findColsMax(items);
 		double[][] means = initMeans(items, k, cMin, cMax);
 		double[] item; boolean noChanges;
 		

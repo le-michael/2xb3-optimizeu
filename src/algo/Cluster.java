@@ -10,7 +10,7 @@ public class Cluster {
 	private Color c;
 	
 
-	public Cluster(float x,float y) {
+	public Cluster(double x,double y) {
 		Random rand = new Random();
 		centroid = new Cord(x,y);
 		size = 1;

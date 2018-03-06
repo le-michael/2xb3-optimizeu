@@ -1,3 +1,4 @@
+package algo;
 
 public class UF {
 	
@@ -45,7 +46,7 @@ public class UF {
     public void union(int p, int q) {
         int rootP = find(p);
         int rootQ = find(q);
-        if (rootP == rootQ) return;
+        if (rootP == rootQ) return; 
 
         // make root of smaller rank point to root of larger rank
         if      (rank[rootP] < rank[rootQ]) parent[rootP] = rootQ;

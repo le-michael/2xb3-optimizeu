@@ -1,3 +1,5 @@
+package algo;
+
 /*
  * Code referenced from Algorithms and Data Structures
  * By Robert Sedgewick and Kevin Wayne

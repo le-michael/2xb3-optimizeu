@@ -16,32 +16,7 @@ public class KMeans {
 	
 	// unit testing goes here. Use StdRandom to shuffle any input!
 	public static void main(String[] args) {
-		double[][] items = {{1.0,1.0},{3.0,3.0},{10.0,10.0},{12.0,12.0}};
 		
-		int k = 4;
-		
-		double[][] means = calculateMeans(4, items, 100000);
-		double[][][] clusters = assignToClusters(means,items);
-		
-		// Check mean clusters; note that output changes due to randomization
-		for (int i = 0; i < k; i++) {
-			for (int j = 0; j < N; j++) {
-				System.out.print(means[i][j] + " ");
-			}
-			System.out.println();
-		}
-		
-		// Check cluster elements
-		// Note that due to lack of array resizing, there may be "garbage" points
-		// in each array cluster
-		for (int i = 0; i < k; i++) {
-			for (int j = 0; j < items.length; j++) {
-				for (int p = 0; p < N; p++)
-					System.out.print(clusters[i][j][p] + " ");
-				System.out.print(",");
-			}
-			System.out.println();
-		}
 	}
 
 	/**

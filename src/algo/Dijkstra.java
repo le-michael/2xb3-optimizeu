@@ -2,31 +2,31 @@
 public class Dijkstra {
 	
     static final int V=100;
-    int minDistance(int dist[], Boolean sptSet[])
+    int minDistance(int distance[], Boolean Set[])
     {
         int min = Integer.MAX_VALUE, min_index=-1;
  
         for (int v = 0; v < V; v++)
-            if (sptSet[v] == false && dist[v] <= min)
+            if (Set[v] == false && distance[v] <= min)
             {
-                min = dist[v];
+                min = distance[v];
                 min_index = v;
             }
  
         return min_index;
     }
- 
- 
+
     int[] dijkstra(int graph[][], int src)
     {
-        int dist[] = new int[V];
+        int distance[] = new int[V];
  
-        Boolean sptSet[] = new Boolean[V];
+        Boolean Set[] = new Boolean[V];
  
         for (int i = 0; i < V; i++)
         {
-            dist[i] = Integer.MAX_VALUE;
-            sptSet[i] = false;
+            Set[i] = false;
+            distance[i] = Integer.MAX_VALUE;
+            
         }
  
         dist[src] = 0;
@@ -36,18 +36,18 @@ public class Dijkstra {
             
             int u = minDistance(dist, sptSet);
  
-            sptSet[u] = true;
+            Set[u] = true;
  
             
             for (int v = 0; v < V; v++)
  
-                if (!sptSet[v] && graph[u][v]!=0 &&
-                        dist[u] != Integer.MAX_VALUE &&
-                        dist[u]+graph[u][v] < dist[v])
-                    dist[v] = dist[u] + graph[u][v];
+                if (!Set[v] && graph[u][v]!=0 &&
+                        distance[u] != Integer.MAX_VALUE &&
+                        distance[u]+graph[u][v] < distance[v])
+                    distance[v] = distance[u] + graph[u][v];
         }
  
-        return dist;
+        return distance;
     }
  
 }

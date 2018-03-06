@@ -11,11 +11,30 @@ import java.util.Random;
  *
  */
 public class KMeans {
-
-	private static final int N = 2; // represents length of the (x,y) coordinate
+	
+	
 	
 	// unit testing goes here. Use StdRandom to shuffle any input!
 	public static void main(String[] args) {
+		int N = 10000;
+		int k = 100;
+		Random rand = new Random();
+		
+		Cord[] items = new Cord[N];
+		for (int i=0;i<N;i++) {
+			items[i] = new Cord(50+rand.nextDouble()*600,50+rand.nextDouble()*600);
+		}
+		
+		
+		Cord[] means = calculateMeans(k,items,1000000);
+		Cluster[] clusters = assignToClusters(means,items);
+
+		for( Cluster clus: clusters) {
+			System.out.println("Cluster");
+			clus.printCluster();
+		}
+        DisplayClusters ex = new DisplayClusters(clusters);
+        ex.setVisible(true);
 		
 	}
 
@@ -63,7 +82,7 @@ public class KMeans {
 	 */
 	private static double dist(Cord a, Cord b) {
 		double sum = 0;
-		sum += Math.pow(a.getX() + b.getX(), 2) + Math.pow(a.getY() + b.getY(),2);
+		sum += Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(),2);
 		return Math.sqrt(sum);
 	}
 	
@@ -83,8 +102,8 @@ public class KMeans {
 			for (int i = 0; i < k; i++) {
 				// Note: +/- 1 narrows down the placement of initial mean spots
 				// mean[i] = StdRandom.uniform(cMin[i]+1,cMax[i]-1);
-				means[i].setX(cMin.getX() + rand.nextDouble() * ( cMax.getX() - cMin.getX()));
-				means[i].setY(cMin.getY() + rand.nextDouble() * ( cMax.getY() - cMin.getY()));
+				
+				means[i] = new Cord(cMin.getX() + rand.nextDouble() * ( cMax.getX() - cMin.getX()),cMin.getY() + rand.nextDouble() * ( cMax.getY() - cMin.getY()));
 			}
 		return means;
 		

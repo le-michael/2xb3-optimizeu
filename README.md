@@ -5,14 +5,15 @@ Please read this for updates and handling of documentation
 
 Next Milestones
 ---------------
-* Minimal functional code: March 9th?
+* Initial Demonstration: March 16th
 
 TODO
 ------------
-* Literally everything
-* Backend
-* Frontend
-* Server
+* Integrate Dataset with current algorithms
+* A Client-Server Interface 
+* Improved User Interface
+* Streamline program flow
+* Update/fix Requirements Specification
 
 Notes on documentation
 ----------------------

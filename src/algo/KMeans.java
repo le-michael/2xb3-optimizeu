@@ -12,21 +12,26 @@ import java.util.Random;
  */
 public class KMeans {
 	
-	
-	
-	// unit testing goes here. Use StdRandom to shuffle any input!
 	public static void main(String[] args) {
-		int N = 10000;
-		int k = 100;
+		int N = 100;
+		int k = 10;
 		Random rand = new Random();
 		
-		Cord[] items = new Cord[N];
+		Cord items = new Cord(0,0);
+		Cord tmp = items;
 		for (int i=0;i<N;i++) {
-			items[i] = new Cord(50+rand.nextDouble()*600,50+rand.nextDouble()*600);
+			tmp.setX(50+rand.nextDouble()*600);
+			tmp.setY(50+rand.nextDouble()*600);
+			tmp.setNext(new Cord(0,0));
+			tmp = tmp.getNext();
 		}
 		
-		
-		Cord[] means = calculateMeans(k,items,1000000);
+
+		System.out.println("done");
+		Cord means = calculateMeans(k,N,items,1000000);
+		System.out.println("done");
+		for (Cord i = means; i != null; i = i.getNext())
+			System.out.println(i);
 		Cluster[] clusters = assignToClusters(means,items,k);
 
 		for( Cluster clus: clusters) {
@@ -141,6 +146,7 @@ public class KMeans {
 				min = distance;
 				index = i;
 			}
+			temp = temp.getNext();
 			i++;
 		}
 		/**
@@ -174,6 +180,7 @@ public class KMeans {
 		
 		for (Cord i = items; i != null; i = i.getNext()) {
 			index = classify(means,i);
+			System.out.println(index);
 			clusters[index].insertCord(i);
 		}
 		
@@ -195,13 +202,13 @@ public class KMeans {
 	 * @param maxIterations Infinite loop termination condition
 	 * @return The calculated mean cluster points
 	 */
-	public static Cord calculateMeans(int k, Cord items, int maxIterations){
+	public static Cord calculateMeans(int k, int datasize, Cord items, int maxIterations){
 		Cord cMin = findColsMin(items), cMax = findColsMax(items);
 		Cord means = initMeans(items, k, cMin, cMax);
-		Cord item; boolean noChanges;
+		boolean noChanges;
 		
 		int[] clusterSizes = new int[k];
-		int[] belongs = new int[k];
+		int[] belongs = new int[datasize+1];
 		
 		// Calculate means
 		for (int j = 0; j < maxIterations; j++) {
@@ -214,9 +221,9 @@ public class KMeans {
 				for (int p = 0; p < index; p++)
 					temp = temp.getNext();
 				updateMean(clusterSizes[index],temp,items);
-				
 				if (index != belongs[count]) noChanges = false;
-				belongs[count++] = index;
+				belongs[count] = index;
+				count++;
 			}
 			/**
 			for (int i = 0; i < items.length; i++) {
@@ -240,7 +247,6 @@ public class KMeans {
 			// break out of k-means algorithm if there are no changes to clusters
 			if (noChanges) break;
 		}
-		
 		return means;
 	}
 }

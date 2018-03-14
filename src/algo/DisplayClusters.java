@@ -85,8 +85,6 @@ public class DisplayClusters extends JFrame {
 	private int REFRESH = 1; 
 	
 	
-	
-	
 	Cluster [] clusters;
     public DisplayClusters(Cluster[] c) {
     	clusters = c;

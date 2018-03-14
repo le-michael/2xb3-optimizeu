@@ -6,11 +6,19 @@ public class Cord {
 	private double yc;
 	private Cord next;
 
-	public Cord(double x, double y) {
+	public Cord(double x, double y, String t) {
 		xc = x;
 		yc = y;
 		next = null;
 		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public Cord(double x, double y) {
+
+		xc = x;
+		yc = y;
+		next = null;
 	}
 	
 	public void setNext(Cord n) {

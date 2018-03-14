@@ -13,7 +13,7 @@ import java.util.Random;
 public class KMeans {
 	
 	public static void main(String[] args) {
-		int N = 100;
+		int N = 10000;
 		int k = 10;
 		Random rand = new Random();
 		
@@ -30,8 +30,10 @@ public class KMeans {
 		System.out.println("done");
 		Cord means = calculateMeans(k,N,items,1000000);
 		System.out.println("done");
-		for (Cord i = means; i != null; i = i.getNext())
+		for (Cord i = means; i != null; i = i.getNext()) {
 			System.out.println(i);
+			System.out.println("Printing Means");
+		}
 		Cluster[] clusters = assignToClusters(means,items,k);
 
 		for( Cluster clus: clusters) {
@@ -181,7 +183,9 @@ public class KMeans {
 		for (Cord i = items; i != null; i = i.getNext()) {
 			index = classify(means,i);
 			System.out.println(index);
-			clusters[index].insertCord(i);
+			System.out.println("Printing This");
+			System.out.println(i.toString());
+			clusters[index].insertCord(new Cord(i.getX(),i.getY()));
 		}
 		
 		/**

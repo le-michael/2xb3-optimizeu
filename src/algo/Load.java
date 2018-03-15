@@ -49,8 +49,8 @@ public class Load {
 		
 		Cord pCord = data;
 		for (Cord i = pCord; i != null; i = i.getNext()) {
-			i.setX((i.getX()- minima.getX())/(maxima.getX()-minima.getX()));
-			i.setY((i.getY()- minima.getY())/(maxima.getY()-minima.getY()));
+			i.setX((i.getX()- minima.getX())/(maxima.getX()-minima.getX()) * 500);
+			i.setY((i.getY()- minima.getY())/(maxima.getY()-minima.getY()) * 500);
 		}
 	}
 		

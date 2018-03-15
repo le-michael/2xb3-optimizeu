@@ -33,7 +33,7 @@ public class Load {
 				temp = line.split(",");
 				pCord.setNext(new Cord(Double.parseDouble(temp[1]),Double.parseDouble(temp[2])));
 				pCord = pCord.getNext();
-				if (pCord.getY() > pCord.getY())
+				if (pCord.getY() > maxima.getY())
 					maxima.setY(pCord.getY());
 				if (pCord.getX() > maxima.getX())
 					maxima.setX(pCord.getX());
@@ -47,8 +47,9 @@ public class Load {
 			e.printStackTrace();
 		}
 		
-		Cord pCord = data;
-		for (Cord i = pCord; i != null; i = i.getNext()) {
+		System.out.println(minima);
+		System.out.println(maxima);
+		for (Cord i = data; i != null; i = i.getNext()) {
 			i.setX((i.getX()- minima.getX())/(maxima.getX()-minima.getX()) * 500);
 			i.setY((i.getY()- minima.getY())/(maxima.getY()-minima.getY()) * 500);
 		}
@@ -58,17 +59,17 @@ public class Load {
 	public Cord getData() {
 		return data;
 	}
-	/*
+	
 	public static void main(String[] args) {
 		Load data = new Load();
 		Cord c = data.getData();
 		Cord temp = c;
-		for(int i = 0;i < 100; i++) {
+		for(int i = 0;i < 600000; i++) {
 			System.out.println(temp.toString());
 			temp = temp.getNext();
 		}
 		
-	}*/
+	}
 		
 
 }

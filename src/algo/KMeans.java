@@ -27,17 +27,17 @@ public class KMeans {
 		}
 		
 
-		System.out.println("done");
+		//System.out.println("done");
 		Cord means = calculateMeans(k,N,items,1000000);
-		System.out.println("done");
+		//System.out.println("done");
 		for (Cord i = means; i != null; i = i.getNext()) {
-			System.out.println(i);
-			System.out.println("Printing Means");
+			//System.out.println(i);
+			//System.out.println("Printing Means");
 		}
 		Cluster[] clusters = assignToClusters(means,items,k);
 
 		for( Cluster clus: clusters) {
-			System.out.println("Cluster");
+			//System.out.println("Cluster");
 			clus.printCluster();
 		}
         DisplayClusters ex = new DisplayClusters(clusters);
@@ -182,9 +182,9 @@ public class KMeans {
 		
 		for (Cord i = items; i != null; i = i.getNext()) {
 			index = classify(means,i);
-			System.out.println(index);
-			System.out.println("Printing This");
-			System.out.println(i.toString());
+			//System.out.println(index);
+			//System.out.println("Printing This");
+			//System.out.println(i.toString());
 			clusters[index].insertCord(new Cord(i.getX(),i.getY()));
 		}
 		

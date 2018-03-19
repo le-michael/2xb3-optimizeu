@@ -47,8 +47,15 @@ class Surface extends JPanel implements ActionListener {
         for(int i =0; i < clusters.length;i++) {
         	
         	g2d.setPaint(clusters[i].getColor());
-        	Cord tempCord = clusters[i].getCenter();
-        	while (tempCord != null) {
+   
+        	g2d.fillOval((int)clusters[i].getCenter().getX(),(int)clusters[i].getCenter().getY(),Integer.min(50, clusters[i].getSize()),Integer.min(50, clusters[i].getSize()));
+        	
+        	
+        	
+        	
+        	
+        	/*
+        	while (tempCord != null && tempCord !=clusters[i].getCenter()) {
         		g2d.fillOval((int)tempCord.getX(), (int)tempCord.getY(), 5, 5);
         		tempCord = tempCord.getNext();
         		if (++count == dispCurr) {
@@ -56,7 +63,7 @@ class Surface extends JPanel implements ActionListener {
         			break;
         		}
         	}
-        	if (done) break;
+        	if (done) break;*/
         }
        
     }
@@ -70,7 +77,7 @@ class Surface extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-    	if (dispCurr < maxSize) dispCurr ++;
+    	if (dispCurr < maxSize) dispCurr = maxSize;
         repaint();
     }
     

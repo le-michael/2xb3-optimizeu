@@ -6,6 +6,7 @@ import java.util.Random;
 public class Cluster {
 
 	private Cord centroid;
+	private Cord head;
 	private int size;
 	private Color c;
 	
@@ -13,6 +14,7 @@ public class Cluster {
 	public Cluster(double x,double y) {
 		Random rand = new Random();
 		centroid = new Cord(x,y);
+		head = centroid;
 		size = 1;
 		c = new Color(rand.nextFloat(),rand.nextFloat(),rand.nextFloat());
 	}
@@ -29,18 +31,18 @@ public class Cluster {
 		return centroid;
 	}
 	
+	public Cord getHead() {
+		return head;
+	}
+	
 	
 	public void insertCord(Cord n) {
-		insertCord(centroid,n);
+		n.setNext(head);
+		head = n;
 		size++;
 	}
 	
-	private void insertCord(Cord head,Cord n) {
-		if (head.getNext() != null)
-			insertCord(head.getNext(),n);
-		else
-			head.setNext(n);
-	}
+
 	
 	public void printCluster() {
 		printCluster(centroid);

@@ -5,15 +5,28 @@ Please read this for updates and handling of documentation
 
 Next Milestones
 ---------------
-* Initial Demonstration: March 16th
+* Presentation slides: April 1st
+* Final Project Demonstration: Week of April 2nd
+* Source code, All other documents: April 11th (?)
 
-TODO
-------------
-* Integrate Dataset with current algorithms
-* A Client-Server Interface 
-* Improved User Interface
-* Streamline program flow
-* Update/fix Requirements Specification
+TODO (Source Code)
+------------------
+* Sort and Search dataset to respond to user's request
+* Integrate Kruskal's with dataset and graphics display
+* Fix or Overlap K-Means clusters with graphics
+* Pre-generate clusters according to hotspots
+* (Maybe) place pre-generate clusters according to postal code
+
+
+TODO (Documents)
+----------------
+| Item                                                 | Assigned to |
+|------------------------------------------------------|-------------|
+| Project Presentation Slides                          |      ?      |
+| Source Code Documentation                            |      ?      |
+| Project Log and Meeting Minutes update               |  Lucas/Omar |
+| Requirements Specification and Proposal update/fixes |      ?      |
+| Design Specifications Document Creation              |    Lucas    |
 
 Notes on documentation
 ----------------------

@@ -16,7 +16,7 @@ TODO (Source Code)
 * Fix or Overlap K-Means clusters with graphics
 * Pre-generate clusters according to hotspots
 * (Maybe) place pre-generate clusters according to postal code
-
+* Unit Testing 
 
 TODO (Documents)
 ----------------

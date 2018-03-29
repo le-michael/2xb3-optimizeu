@@ -23,7 +23,7 @@ TODO (Documents)
 | Item                                                 | Assigned to |
 |------------------------------------------------------|-------------|
 | Project Presentation Slides                          |      ?      |
-| Source Code Documentation                            |      ?      |
+| Source Code Documentation                            |  Michael    |
 | Project Log and Meeting Minutes update               |  Lucas/Omar |
 | Requirements Specification and Proposal update/fixes |      ?      |
 | Design Specifications Document Creation              |    Lucas    |

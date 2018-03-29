@@ -18,6 +18,15 @@ TODO (Source Code)
 * (Maybe) place pre-generate clusters according to postal code
 * Unit Testing 
 
+March 29th ToDo
+---------------
+* Reformat the data variable from Cord to HashTable<Int,Cord>
+* Update the Load Constructor such that it appends into HashTable
+* Time will be added by hour only
+* Update getData to return HashTable
+* Every instance of data should be refactored such that we are retriving from a HashTable
+* Fix every instance that returns Cord
+
 TODO (Documents)
 ----------------
 | Item                                                 | Assigned to |

@@ -6,14 +6,26 @@ Slide 2: Overview
 
 Slide 3: Dataset
 	- Manhattan, New York Uber pickups in 2014 (check if this is valid)
+	(Also insert the source of the dataset: Kaggle?)
 	- Rows consists of Date/Time, latitude & longitude
 	- Over 500,000 pickups in a given month in the dataset (check validity)
 
-Slide 4: Algorithms
+Slide 4: Requirements:
+	- Display a MST Graph of hotspot clusters consistently and accurately
+	- Query processing should take lesser than 3 seconds 
+	(A little uncertain on the time here, might be modified)
+
+Slide 5: Algorithms
 	- Search/Sort dataset by pickup time
 	- K-Means Clustering of pickup hotspots
 	- Kruskal's to generate MST of centroids for optimal path visitation
 
-Slide 5: Visualization/Front-end
+Slide 6: Visualization/Front-end
 	- Users can select by time to see current hotspots
 	- Java Graphics library generates cluster visualization with MST 
+
+Slide 7: Verfication and Validation
+	- White Box testing of Algorithms and ADTs
+	- Black Box testing of Graph Output (This point doesnt make sense?)
+
+ 

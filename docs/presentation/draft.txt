@@ -1,0 +1,19 @@
+Slide 1: Introduction (Title Page)
+
+Slide 2: Overview
+	- Optimize path visitation of Uber drivers
+	- Reduce wait times of passengers
+
+Slide 3: Dataset
+	- Manhattan, New York Uber pickups in 2014 (check if this is valid)
+	- Rows consists of Date/Time, latitude & longitude
+	- Over 500,000 pickups in a given month in the dataset (check validity)
+
+Slide 4: Algorithms
+	- Search/Sort dataset by pickup time
+	- K-Means Clustering of pickup hotspots
+	- Kruskal's to generate MST of centroids for optimal path visitation
+
+Slide 5: Visualization/Front-end
+	- Users can select by time to see current hotspots
+	- Java Graphics library generates cluster visualization with MST 

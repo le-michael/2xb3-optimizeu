@@ -1,6 +1,7 @@
 package algo;
 
 import java.util.Random;
+import java.util.ArrayList;
 
 /**
  * k-means clustering algorithm.
@@ -17,21 +18,17 @@ public class KMeans {
 		int k = 10;
 		Random rand = new Random();
 		
-		Cord items = new Cord(0,0);
-		Cord tmp = items;
+		ArrayList<Cord> items = new ArrayList<Cord>();
 		for (int i=0;i<N;i++) {
-			tmp.setX(50+rand.nextDouble()*600);
-			tmp.setY(50+rand.nextDouble()*600);
-			tmp.setNext(new Cord(0,0));
-			tmp = tmp.getNext();
+			items.add(new Cord(50+rand.nextDouble()*600,50+rand.nextDouble()*600));
 		}
 		
 
 		//System.out.println("done");
-		Cord means = calculateMeans(k,N,items,1000000);
+		ArrayList<Cord> means = calculateMeans(k,N,items,1000000);
 		//System.out.println("done");
-		for (Cord i = means; i != null; i = i.getNext()) {
-			//System.out.println(i);
+		for (Cord mean : means) {
+			System.out.println(mean);
 			//System.out.println("Printing Means");
 		}
 		Cluster[] clusters = assignToClusters(means,items,k);
@@ -41,7 +38,7 @@ public class KMeans {
 			clus.printCluster();
 		}
         DisplayClusters ex = new DisplayClusters(clusters);
-        ex.setVisible(true);
+        ex.setVisible(true); 
 		
 	}
 
@@ -50,17 +47,14 @@ public class KMeans {
 	 * @param items The array of coordinates
 	 * @return The minima of the input coordinates
 	 */
-	private static Cord findColsMin(Cord items) {
+	private static Cord findColsMin(ArrayList<Cord> items) {
 		Cord minima = new Cord(Integer.MAX_VALUE, Integer.MAX_VALUE);
-		Cord temp = items;
-		while (temp != null) {
-			if (temp.getY() < minima.getY())
-				minima.setY(temp.getY());
-			if (temp.getX() < minima.getX())
-				minima.setX(temp.getX());
-			temp = temp.getNext();
+		for (Cord cord: items) {
+			if (cord.getY() < minima.getY())
+				minima.setY(cord.getY());
+			if (cord.getX() < minima.getX())
+				minima.setX(cord.getX());
 		}
-		
 		return minima;
 	}
 	
@@ -69,17 +63,14 @@ public class KMeans {
 	 * @param items The array of coordinates
 	 * @return The maxima of the input coordinates
 	 */
-	private static Cord findColsMax(Cord items) {
+	private static Cord findColsMax(ArrayList<Cord> items) {
 		Cord maxima = new Cord(Integer.MIN_VALUE, Integer.MIN_VALUE);
-		Cord temp = items;
-		while (temp != null) {
-			if (temp.getY() > maxima.getY())
-				maxima.setY(temp.getY());
-			if (temp.getX() > maxima.getX())
-				maxima.setX(temp.getX());
-			temp = temp.getNext();
+		for (Cord cord: items) {
+			if (cord.getY() > maxima.getY())
+				maxima.setY(cord.getY());
+			if (cord.getX() > maxima.getX())
+				maxima.setX(cord.getX());
 		}
-		
 		return maxima;
 	}
 	
@@ -103,16 +94,15 @@ public class KMeans {
 	 * @param cMax The maxima of the dataset
 	 * @return The coordinates of the means stored in an array
 	 */
-	private static Cord initMeans(Cord items, int k, Cord cMin, Cord cMax){
+	private static ArrayList<Cord> initMeans(ArrayList<Cord> items, int k, Cord cMin, Cord cMax){
 		Random rand = new Random();
-		Cord means = new Cord(cMin.getX() + rand.nextDouble() * ( cMax.getX() - cMin.getX()),cMin.getY() + rand.nextDouble() * ( cMax.getY() - cMin.getY()));
-		Cord temp = means;
-		for (int i = 1; i < k; i++) {
-			temp.setNext(new Cord(cMin.getX() + rand.nextDouble() * ( cMax.getX() - cMin.getX()),cMin.getY() + rand.nextDouble() * ( cMax.getY() - cMin.getY())));
-			temp = temp.getNext();
+		ArrayList<Cord> means = new ArrayList<Cord>();
+		for (int i = 0; i < k; i++) {
+			means.add(new Cord(cMin.getX() + rand.nextDouble() * 
+					( cMax.getX() - cMin.getX()),cMin.getY() + rand.nextDouble() * 
+					( cMax.getY() - cMin.getY())));
 		}
 		return means;
-		
 	}
 	
 	/**
@@ -134,33 +124,20 @@ public class KMeans {
 	 * @param item The item to classify
 	 * @return The index of the mean which the iteam is classified to
 	 */
-	private static int classify(Cord means, Cord item) {
+	private static int classify(ArrayList<Cord> means, Cord item) {
 		
 		double min = Integer.MAX_VALUE;
 		int index = - 1;
 		double distance;
 		
-		Cord temp = means;
-		int i = 0;
-		while (temp != null) {
-			distance = dist(temp, item);
-			if (distance < min) {
-				min = distance;
-				index = i;
-			}
-			temp = temp.getNext();
-			i++;
-		}
-		/**
-		for (int i = 0; i < means.length; i++) {
-			distance = dist(means[i], item); 
-			
+		for (int i = 0; i < means.size(); i++) {
+			distance = dist(means.get(i), item);
 			if (distance < min) {
 				min = distance;
 				index = i;
 			}
 		}
-		**/
+		
 		return index;		
 
 	}
@@ -172,20 +149,20 @@ public class KMeans {
 	 * @param k The number of clusters
 	 * @return The items that are assigned to the corresponding mean's index
 	 */
-	public static Cluster[] assignToClusters(Cord means, Cord items, int k){
+	public static Cluster[] assignToClusters(ArrayList<Cord> means, ArrayList<Cord> items, int k){
 		Cluster[] clusters = new Cluster[k];
 		int index = 0;
-		for (Cord i = means; i != null; i = i.getNext()) {
-			clusters[index] = new Cluster(i.getX(), i.getY());
+		for (Cord mean : means) {
+			clusters[index] = new Cluster(mean.getX(), mean.getY());
 			index++;
 		}
 		
-		for (Cord i = items; i != null; i = i.getNext()) {
-			index = classify(means,i);
+		for (Cord item : items) {
+			index = classify(means,item);
 			//System.out.println(index);
 			//System.out.println("Printing This");
 			//System.out.println(i.toString());
-			clusters[index].insertCord(new Cord(i.getX(),i.getY()));
+			clusters[index].insertCord(new Cord(item.getX(),item.getY()));
 		}
 		
 		/**
@@ -206,9 +183,9 @@ public class KMeans {
 	 * @param maxIterations Infinite loop termination condition
 	 * @return The calculated mean cluster points
 	 */
-	public static Cord calculateMeans(int k, int datasize, Cord items, int maxIterations){
+	public static ArrayList<Cord> calculateMeans(int k, int datasize, ArrayList<Cord> items, int maxIterations){
 		Cord cMin = findColsMin(items), cMax = findColsMax(items);
-		Cord means = initMeans(items, k, cMin, cMax);
+		ArrayList<Cord> means = initMeans(items, k, cMin, cMax);
 		boolean noChanges;
 		
 		int[] clusterSizes = new int[k];
@@ -218,13 +195,10 @@ public class KMeans {
 		for (int j = 0; j < maxIterations; j++) {
 			noChanges = true;
 			int index, count = 0;
-			for (Cord i = items; i != null; i = i.getNext()) {
-				index = classify(means,items);
+			for (Cord item : items) {
+				index = classify(means,item);
 				clusterSizes[index]++;
-				Cord temp = means;
-				for (int p = 0; p < index; p++)
-					temp = temp.getNext();
-				updateMean(clusterSizes[index],temp,items);
+				updateMean(clusterSizes[index],means.get(index),item);
 				if (index != belongs[count]) noChanges = false;
 				belongs[count] = index;
 				count++;

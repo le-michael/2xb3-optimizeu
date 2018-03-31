@@ -1,5 +1,6 @@
 package algo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class KruskalMST {
@@ -29,13 +30,11 @@ public class KruskalMST {
 	}
 
 	public static void main(String[] args) {
-		Cord m = new Cord(1,1);
-		Cord temp = m;
-		for (int i = 2; i < 10; i++) {
-			temp.setNext(new Cord(i,i));
-			temp = temp.getNext();
+		ArrayList<Cord> points = new ArrayList<Cord>();
+		for (int i = 1; i < 10; i++) {
+			points.add(new Cord(i, i));
 		}
-		Graph G = new Graph(9, m);
+		Graph G = new Graph(9, points);
 		KruskalMST k = new KruskalMST(G);
 		System.out.println(k);
 	}

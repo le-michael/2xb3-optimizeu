@@ -1,20 +1,22 @@
 package algo;
 
+import java.util.ArrayList;
+
 public class Graph{
 	private final int Centroids;
 	private int edgeCount;
 	private Edge[] edges;
-	private Cord points;
+	private ArrayList<Cord> points;
 	
-	public Graph(int k, Cord means) {
+	public Graph(int k, ArrayList<Cord> means) {
 		this.Centroids = k;
 		this.points = means;
 		this.edgeCount = (k*(k-1))/2;
 		edges = new Edge[edgeCount];
 		int count = 0;
-		for (Cord v = means; v != null; v = v.getNext()) {
-			for (Cord w = v.getNext(); w != null; w = w.getNext()) {
-				edges[count] = new Edge(v,w);
+		for (int i = 0; i < means.size()-1; i++) {
+			for (int j = i+1; j < means.size(); j++) {
+				edges[count] = new Edge(means.get(i),means.get(j));
 				count++;
 			}
 		}
@@ -23,7 +25,7 @@ public class Graph{
 	public int Centroids() { return Centroids; }
 	public int edgeCount() { return edgeCount; }
 	public Edge[] edges() { return edges; }
-	public Cord points() { return points; }
+	public ArrayList<Cord> points() { return points; }
 	
 	public void sortEdges() {
 		Heap.sortHeap(edges,edgeCount);
@@ -36,14 +38,13 @@ public class Graph{
 		}
 		return s;
 	}
+	
 	public static void main(String[] args) {
-		Cord m = new Cord(1,1);
-		Cord temp = m;
-		for (int i = 2; i < 10; i++) {
-			temp.setNext(new Cord(i,i));
-			temp = temp.getNext();
+		ArrayList<Cord> points = new ArrayList<Cord>();
+		for (int i = 0; i < 9; i++) {
+			points.add(new Cord(i, i));
 		}
-		Graph G = new Graph(9, m);
+		Graph G = new Graph(9, points);
 		System.out.println(G);
 	}
 	

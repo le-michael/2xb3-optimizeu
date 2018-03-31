@@ -1,5 +1,6 @@
 package algo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class UF{
@@ -7,7 +8,7 @@ public class UF{
 	private int[] size;
 	private HashMap<Cord,Integer> dict;
 	
-	public UF(int k, Cord means) {
+	public UF(int k, ArrayList<Cord> means) {
 		parent = new int[k];
 		for (int i = 0; i < k; i++) parent[i] = i;
 		size = new int[k];
@@ -15,7 +16,7 @@ public class UF{
 		// hash coordinates to an index to make union-find work
 		dict = new HashMap<Cord, Integer>();
 		int count = 0;
-		for (Cord cord = means; cord != null; cord = cord.getNext()) {
+		for (Cord cord : means) {
 			dict.put(cord, count);
 			count++;
 		}

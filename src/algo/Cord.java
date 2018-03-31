@@ -4,29 +4,12 @@ public class Cord {
 	
 	private double xc;
 	private double yc;
-	private Cord next;
 
-	public Cord(double x, double y, String t) {
-		xc = x;
-		yc = y;
-		next = null;
-		// TODO Auto-generated constructor stub
-	}
-	
+
 	
 	public Cord(double x, double y) {
-
 		xc = x;
 		yc = y;
-		next = null;
-	}
-	
-	public void setNext(Cord n) {
-		next = n;
-	}
-	
-	public Cord getNext() {
-		return next;
 	}
 	
 	public double getX() {

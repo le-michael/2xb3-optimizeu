@@ -1,21 +1,21 @@
 package algo;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Cluster {
 
 	private Cord centroid;
-	private Cord head;
-	private int size;
+	private ArrayList<Cord> points;
+
 	private Color c;
 	
 
 	public Cluster(double x,double y) {
 		Random rand = new Random();
 		centroid = new Cord(x,y);
-		head = centroid;
-		size = 1;
+		points = new ArrayList<Cord>();
 		c = new Color(rand.nextFloat(),rand.nextFloat(),rand.nextFloat());
 	}
 	
@@ -24,35 +24,26 @@ public class Cluster {
 	}
 	
 	public int getSize() {
-		return size;
+		return points.size();
 	}
 	
 	public Cord getCenter() {
 		return centroid;
 	}
 	
-	public Cord getHead() {
-		return head;
+	public ArrayList<Cord> getPoints() {
+		return points;
 	}
 	
 	
 	public void insertCord(Cord n) {
-		n.setNext(head);
-		head = n;
-		size++;
+		points.add(n);
 	}
-	
-
 	
 	public void printCluster() {
-		printCluster(centroid);
+		for(Cord c : points)
+			System.out.println(c.toString());
 	}
 	
-	private void printCluster(Cord n) {
-		System.out.println(n.toString());
-		if (n.getNext() != null)
-			printCluster(n.getNext());
-	}
-
 	
 }

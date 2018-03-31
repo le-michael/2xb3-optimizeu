@@ -1,17 +1,20 @@
 package algo;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Load {
 	
-	Cord data;
-	Cord maxima;
-	Cord minima;
+	//Cord data;
+	//Cord maxima;
+	//Cord minima;
 	int size;
+	
+	HashMap<String,Cord> data;
+	
 	
 	public Load() {
 		String f = "./data/uber-raw-data-may14.csv";
@@ -21,23 +24,32 @@ public class Load {
 			line = br.readLine();
 			line = br.readLine();
 			String [] temp = line.split(",");
-			data = new Cord(Double.parseDouble(temp[1]),Double.parseDouble(temp[2]));
-			Cord pCord = data;
+
+			
+			//data = new Cord(Double.parseDouble(temp[1]),Double.parseDouble(temp[2]));
+			//Cord pCord = data;
 			size =1;
+			
 			while ((line = br.readLine())!= null) {
 				temp = line.split(",");
-				pCord.setNext(new Cord(Double.parseDouble(temp[1]),Double.parseDouble(temp[2])));
-				pCord = pCord.getNext();
+				//System.out.println(Arrays.toString(temp));
+				double x = Double.parseDouble(temp[1]);
+				double y = Double.parseDouble(temp[2]);
+				System.out.println(temp[0].split(" ")[1].split(":")[0]);
+				//pCord.setNext(new Cord(Double.parseDouble(temp[1]),Double.parseDouble(temp[2])));
+				//pCord = pCord.getNext();
 				//System.out.println(pCord.toString());
 				size ++;
 			}
-			
+		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
+		
 	}
 		
+	/*
 	
 	public Cord getData() {
 
@@ -46,7 +58,7 @@ public class Load {
 		
 		return data;
 	}
-	
+	/*
 	public Cord getPixelData(int w,int h) {
 		Cord head = cordToPixel(data.getX(),data.getY(),w,h);
 		Cord prev = head;
@@ -98,18 +110,18 @@ public class Load {
 		
 		
 	}
-	
+	*/
 
 	
 	public static void main(String[] args) {
 		Load data = new Load();
-		Cord c = data.getData();
-		Cord p = data.getPixelData(500, 500);
-		Cord means = KMeans.calculateMeans(100, data.getSize(), p, 100000);
-		Cluster[]  clus = KMeans.assignToClusters(means, p, 100);
+		//Cord c = data.getData();
+		//Cord p = data.getPixelData(500, 500);
+		//Cord means = KMeans.calculateMeans(100, data.getSize(), p, 100000);
+		//Cluster[]  clus = KMeans.assignToClusters(means, p, 100);
 		
-        DisplayClusters ex = new DisplayClusters(clus);
-        ex.setVisible(true);
+   //     DisplayClusters ex = new DisplayClusters(clus);
+   //     ex.setVisible(true);
 		
 
 		

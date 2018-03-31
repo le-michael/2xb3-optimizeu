@@ -27,16 +27,9 @@ public class KMeans {
 		//System.out.println("done");
 		ArrayList<Cord> means = calculateMeans(k,N,items,1000000);
 		//System.out.println("done");
-		for (Cord mean : means) {
-			System.out.println(mean);
-			//System.out.println("Printing Means");
-		}
-		Cluster[] clusters = assignToClusters(means,items,k);
 
-		for( Cluster clus: clusters) {
-			//System.out.println("Cluster");
-			clus.printCluster();
-		}
+		Cluster[] clusters = assignToClusters(means,items,k);
+		
         DisplayClusters ex = new DisplayClusters(clusters);
         ex.setVisible(true); 
 		

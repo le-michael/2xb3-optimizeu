@@ -47,23 +47,9 @@ class Surface extends JPanel implements ActionListener {
         for(int i =0; i < clusters.length;i++) {
         	
         	g2d.setPaint(clusters[i].getColor());
-   
-        	g2d.fillOval((int)clusters[i].getCenter().getX(),(int)clusters[i].getCenter().getY(),Integer.min(50, clusters[i].getSize()),Integer.min(50, clusters[i].getSize()));
-        	
-        	
-        	
-        	
-        	
-        	/*
-        	while (tempCord != null && tempCord !=clusters[i].getCenter()) {
-        		g2d.fillOval((int)tempCord.getX(), (int)tempCord.getY(), 5, 5);
-        		tempCord = tempCord.getNext();
-        		if (++count == dispCurr) {
-        			done = true;
-        			break;
-        		}
+        	for(Cord c : clusters[i].getPoints()) {
+        		g2d.fillOval((int)c.getX(), (int)c.getY(), 5, 5);
         	}
-        	if (done) break;*/
         }
        
     }
@@ -80,9 +66,6 @@ class Surface extends JPanel implements ActionListener {
     	if (dispCurr < maxSize) dispCurr = maxSize;
         repaint();
     }
-    
-    
-    
 
 
 }
@@ -90,7 +73,6 @@ class Surface extends JPanel implements ActionListener {
 public class DisplayClusters extends JFrame {
 	private Timer time;
 	private int REFRESH = 1; 
-	
 	
 	Cluster [] clusters;
     public DisplayClusters(Cluster[] c) {

@@ -131,9 +131,9 @@ public class Load {
 		}
 		ArrayList<Cord> means = KMeans.calculateMeans(10,cords.get(2).size(),cords.get(2),1000000);
 		Cluster[] clusters = KMeans.assignToClusters(means,cords.get(2),10);
-
-        DisplayClusters ex = new DisplayClusters(clusters);
-        ex.setVisible(true); 
+	
+        //DisplayClusters ex = new DisplayClusters(clusters);
+        //ex.setVisible(true); 
 		
 		
 	}

@@ -41,7 +41,7 @@ public class Load {
 				minima.setX(Double.min(cp.getX(), minima.getX()));
 				minima.setY(Double.min(cp.getY(), minima.getY()));
 				
-				System.out.println(cp.getX() + " " +cp.getY());
+				//System.out.println(cp.getX() + " " +cp.getY());
 				if (!data.containsKey(time))
 					data.put(time, new ArrayList<Cord>());
 				data.get(time).add(cp);
@@ -50,8 +50,9 @@ public class Load {
 				//pCord.setNext(new Cord(Double.parseDouble(temp[1]),Double.parseDouble(temp[2])));
 				//pCord = pCord.getNext();
 				//System.out.println(pCord.toString());
+				
 			}
-		
+			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -66,8 +67,8 @@ public class Load {
 	private void normalizeData() {
 		for (int time : data.keySet()) {
 			for (Cord i : data.get(time)) {
-				i.setX(((i.getX()-minima.getX())/(maxima.getX() - minima.getX()))*750);
-				i.setY(((i.getY()-minima.getY())/(maxima.getY() - minima.getY()))*750);
+				i.setX(((i.getX()-minima.getX())/(maxima.getX() - minima.getX()))*730);
+				i.setY(((i.getY()-minima.getY())/(maxima.getY() - minima.getY()))*700);
 			}
 		}
 	}

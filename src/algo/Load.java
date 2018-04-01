@@ -73,44 +73,6 @@ public class Load {
 		}
 	}
 	
-	/*
-
-	public Cord getPixelData(int w,int h) {
-		Cord head = cordToPixel(data.getX(),data.getY(),w,h);
-		Cord prev = head;
-		
-		maxima = new Cord(head.getX(),head.getY());
-		minima = new Cord(head.getX(),head.getY());
-		
-		for (Cord i = data.getNext(); i != null ; i = i.getNext()) {
-			prev.setNext(cordToPixel(i.getX(),i.getY(),w,h));
-			maxima.setX(Double.max(maxima.getX(),prev.getX()));
-			minima.setX(Double.min(minima.getX(),prev.getX()));
-			maxima.setY(Double.max(maxima.getY(),prev.getY()));
-			minima.setY(Double.min(minima.getY(),prev.getY()));
-			prev = prev.getNext();
-		}
-		//System.out.println("MAXIMMA MINIMA");
-		//System.out.println(maxima.toString());
-		//System.out.println(minima.toString());
-		
-		
-		minima.setX(minima.getX()+minima.getX()*0.0005);
-		minima.setY(minima.getY()+minima.getY()*0.0005);
-		maxima.setX(maxima.getX()-maxima.getX()*0.0015);
-		maxima.setY(maxima.getY()-maxima.getY()*0.0015);
-		
-		for (Cord i = head; i != null ; i = i.getNext()) {
-			
-			i.setX(((i.getX()-minima.getX())/(maxima.getX() - minima.getX()))*w);
-			i.setY(((i.getY()-minima.getY())/(maxima.getY() - minima.getY()))*h);
-			//System.out.println(i.toString());
-		}
-		
-		
-		return head;		
-	}*/
-	
 	private Cord cordToPixel(double longitude, double latitude,int mapWidth,int mapHeight) {
 		
 		double x = (longitude + 180)*(mapWidth/360);
@@ -123,21 +85,6 @@ public class Load {
 	}
 	
 
-	
-	public static void main(String[] args) {
-		Load data = new Load();
-		HashMap<Integer,ArrayList<Cord>> cords = data.getData();
-		for(int i = 0; i < 24; i ++) {
-			System.out.println(cords.get(i).size());
-		}
-		ArrayList<Cord> means = KMeans.calculateMeans(10,cords.get(2).size(),cords.get(2),1000000);
-		Cluster[] clusters = KMeans.assignToClusters(means,cords.get(2),10);
-	
-        //DisplayClusters ex = new DisplayClusters(clusters);
-        //ex.setVisible(true); 
-		
-		
-	}
 		
 
 }

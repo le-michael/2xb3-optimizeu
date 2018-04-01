@@ -29,14 +29,5 @@ public class KruskalMST {
 		return s;
 	}
 
-	public static void main(String[] args) {
-		ArrayList<Cord> points = new ArrayList<Cord>();
-		for (int i = 1; i < 10; i++) {
-			points.add(new Cord(i, i));
-		}
-		Graph G = new Graph(9, points);
-		KruskalMST k = new KruskalMST(G);
-		System.out.println(k);
-	}
 }
 

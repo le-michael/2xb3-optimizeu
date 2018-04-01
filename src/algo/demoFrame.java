@@ -16,6 +16,8 @@ import javax.swing.JSplitPane;
 import javax.swing.SwingConstants;
 
 public class demoFrame extends javax.swing.JFrame{
+
+	private static final long serialVersionUID = 1L;
 	private final JSplitPane split;
 	private final JPanel leftPanel;
 	private final JPanel rightPanel;
@@ -104,12 +106,12 @@ public class demoFrame extends javax.swing.JFrame{
 		rightPanel.add(timeText);
 		
 		JLabel avgPickup = new JLabel ("Average Pickup: ",SwingConstants.CENTER);
-		avgPickup.setBounds(15,140,compWidth,compHeight);
+		avgPickup.setBounds(15,150,compWidth,compHeight);
 		rightPanel.add(avgPickup);
 		
 
 		JLabel avgValue = new JLabel ( String.valueOf(cords.get(time).size()/24.0),SwingConstants.CENTER);
-		avgValue.setBounds(15,160,compWidth,compHeight);
+		avgValue.setBounds(15,170,compWidth,compHeight);
 		rightPanel.add(avgValue);
 		
 		

@@ -13,28 +13,6 @@ import java.util.ArrayList;
  */
 public class KMeans {
 	
-	public static void main(String[] args) {
-		int N = 10000;
-		int k = 10;
-		Random rand = new Random();
-		
-		ArrayList<Cord> items = new ArrayList<Cord>();
-		for (int i=0;i<N;i++) {
-			items.add(new Cord(50+rand.nextDouble()*600,50+rand.nextDouble()*600));
-		}
-		
-
-		//System.out.println("done");
-		ArrayList<Cord> means = calculateMeans(k,N,items,1000000);
-		//System.out.println("done");
-
-		Cluster[] clusters = assignToClusters(means,items,k);
-		
-        DisplayClusters ex = new DisplayClusters(clusters);
-        ex.setVisible(true); 
-		
-	}
-
 	/**
 	 * Given an array of coordinates, find the minima of the coordinates
 	 * @param items The array of coordinates

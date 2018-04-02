@@ -44,7 +44,7 @@ public class Heap {
 		}
 	}
 	
-	public static boolean lessThan(Comparable a, Comparable b) {
+	private static boolean lessThan(Comparable a, Comparable b) {
 		return a.compareTo(b) < 0;
 	}
 	
@@ -54,7 +54,7 @@ public class Heap {
 	 * @param i The first value to be switched
 	 * @param j The second value to be switched
 	 */
-	public static void heapExch(Comparable[] arr, int i, int j) {
+	private static void heapExch(Comparable[] arr, int i, int j) {
 		i--;j--;
 		Comparable t = arr[i];
 		arr[i] = arr[j];

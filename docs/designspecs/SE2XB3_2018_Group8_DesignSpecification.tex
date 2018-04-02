@@ -1,0 +1,283 @@
+\documentclass[12pt]{article}
+
+\usepackage{fullpage}
+\usepackage{booktabs}
+\usepackage{tabularx} % Resizable tabular environment
+
+\pagestyle{plain}
+\pagenumbering{arabic}
+
+\newcounter{stepnum}
+
+%%%%%%%%%%%%%%%
+% The environment below is used for text file extension Verbatim inclusion
+%%%%%%%%%%%%%%%
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{fancyvrb}
+
+% redefine \VerbatimInput
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}%
+{fontsize=\footnotesize,
+ %
+ frame=lines,  % top and bottom rule only
+ framesep=2em, % separation between frame and text
+ rulecolor=\color{Gray},
+ %
+ label=\fbox{\color{Black}Revision History},
+ labelposition=topline,
+ %
+ commandchars=\|\(\), % escape character and argument delimiters for
+                      % commands within the verbatim
+ commentchar=*        % comment character
+}
+
+\begin{document}
+
+\begin{titlepage} % Suppresses headers and footers on the title page
+
+	\centering % Centre everything on the title page
+	
+	\scshape % Use small caps for all text on the title page
+	
+	\vspace*{\baselineskip} % White space at the top of the page
+	
+	%------------------------------------------------
+	%	Title
+	%------------------------------------------------
+	
+	\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} % Thick horizontal rule
+	\rule{\textwidth}{0.4pt} % Thin horizontal rule
+	
+	\vspace{0.75\baselineskip} % Whitespace above the title
+	
+	{\LARGE SE2XB3 OptimizeU V1.0 \\ Design Specification\\} % Title
+	
+	\vspace{0.75\baselineskip} % Whitespace below the title
+	
+	\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt} % Thin horizontal rule
+	\rule{\textwidth}{1.6pt} % Thick horizontal rule
+	
+	\vspace{2\baselineskip} % Whitespace after the title block
+	
+	%------------------------------------------------
+	%	Subtitle
+	%------------------------------------------------
+	
+	Final Project for SFWRENG 2XB3:Software Engineering Practice and Experience: 
+	Binding Theory to Practice
+	
+	\vspace*{3\baselineskip} % Whitespace under the subtitle
+	
+	%------------------------------------------------
+	%	Group members
+	%------------------------------------------------
+	
+	Group 8\\ Members:\\
+	
+	\vspace{0.5\baselineskip}
+	
+	{\scshape\Large Lucas Matthew Dutton \\ Michael Le \\ Saad Khan \\ Omar Elemary\\}
+	
+	\vspace{0.5\baselineskip} 
+	
+	\textit{McMaster University \\ Department of Computing and Software} 
+	
+	\vfill
+	
+	%------------------------------------------------
+	%	Date
+	%------------------------------------------------
+	
+	Created and Edited on: April 1, 2018 
+
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+
+\section{Revisions}
+
+\subsection{Revision History}
+
+\VerbatimInput{log.txt}
+
+\newpage
+
+\subsection{Team Details}
+
+\begin{table}[h]
+\begin{tabular}{| l | l | l |}
+\hline
+Name & Student Number & Roles \\ 
+\hline
+Michael Le & 400070369 & Group Leader, Graphics Implementation\\ 
+\hline
+Lucas Dutton & 400052930 & Log Admin, Algorithms Implementation\\ 
+\hline
+Saad Khan & 400085498 & Documentation Designer, Server Researcher\\ 
+\hline
+Omar Elemary & 400100169 & Algorithms Researcher, Log Assistant\\ 
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Attestation and Consent}
+
+\textit{By virtue of submitting this document we electronically sign
+and date that the work being submitted by all the individuals in the 
+group is their exclusive work as a group and we consent to make
+available the application developed through SE2XB3 project, the 
+reports, presentations and assignments (not including my name or 
+student number) for future teaching purposes.}
+
+\newpage
+
+\section{Contributions}
+Note: Member roles are outlines in \textbf{Revisions: Team Details}
+
+\begin{table}[h]
+\begin{tabularx}{\textwidth}{|l|X|X|}
+\hline
+Name & Contributions & Comments \\
+\hline
+Lucas Dutton & Implemented Kruskals, K-Means and Associated ADT
+               (Abstract Data Type)
+             & Responsible for implementing and updating algorithms
+               with any project changes\\
+\cline{2-3}
+~ & Project Log and Meeting Minutes admin 
+  & Responsible for monitoring and updating Project Logs\\
+\cline{2-3}
+~ & Documentation editor
+  & Responsible for creating and sharing documents such as 
+    Requirements and Design Specifications\\
+\hline
+Michael Le & Implemented graphical representation of outputs
+           & Responsible for presenting data in a graphical
+             environment in Java\\
+\cline{2-3}
+~ & Implemented graphical ADTs 
+  & Cluster and Cord ADTs made for interaction between algorithms
+    and graphics\\
+\hline
+Saad Khan & Presentation Facilitator 
+          & Responsible for organizing presentation slides\\
+\cline{2-3}
+~ & Graphics creator for documents 
+  & Responsible for creating diagrams for documents, e.g. UML\\
+\hline
+Omar Elemary & Meeting Minutes upkeep
+             & Responsible for creating and updating project logs\\
+\cline{2-3}
+~ & Algorithms research
+  & Responsible for researching algorithms in the project proposal\\
+\hline
+\end{tabularx}
+\end{table}
+
+\newpage
+
+\section{Executive Summary}
+OptimizeU is intended to be a portable app that addresses the problem of finding an Uber pickup
+on busy nights, as well as optimizing driving routes of Uber drivers. The project leverages a 
+dataset of twenty million Uber pick ups in New York City to help drivers locate the
+busiest hotspots in the city, routing more cars to denser locations which allows more users
+to find access to an Uber vehicle in a faster time. The application uses various algorithms
+related to machine learning and graphing, as well as pre-processing the dataset with searching
+and sorting algorithms to generate a pick-up density map of the city. The map will contain
+heat clusters related to density and distances between each cluster to inform the driver of
+optimal routes that can be taken. In short, the aim of OptimizeU is decrease wait times of
+passengers and maximize profits of Uber drivers.
+
+\newpage
+
+\section{Design Description}
+\subsection{Module Description and Decomposition}
+\subsubsection{Module Overview}
+The table below shows a top-level view of each class in the application. Classes are grouped
+by their functionality and dependency on one another.
+\begin{table}[h]
+\begin{tabularx}{\textwidth}{|l|X|X|}
+\hline
+Function & Class Name & Description\\
+\hline
+Basic Representation & Cord & 2-Dimensional representation of coordinates\\
+\hline
+Clustering & Cluster & Representation of a cluster produced by K-Means\\
+\cline{2-3}
+~ & KMeans & Clustering algorithm API\\
+\hline
+Minimum Spanning Tree & KruskalMST & Driver class to calculate Minimum
+                                     Spanning Tree\\
+\cline{2-3}
+~ & Edge & ADT representation of weighted edges\\
+\cline{2-3}
+~ & Graph & Module to instantiate a graph with directed edges\\
+\cline{2-3}
+~ & UF & Helper module for connecting vertices in a graph\\
+\cline{2-3}
+~ & Heap & Heapsort on edges for Kruskals\\
+\hline
+Input/Output & Load & Reads dataset, sorts them according to time,
+                      and puts each coordinate in a Hash Table\\
+\cline{2-3}
+~ & drawSurface & Graphics implementation of clusters and MST\\
+\cline{2-3}
+~ & demoFrame & Main driver of application\\
+\hline
+\end{tabularx}
+\end{table}
+
+\newpage
+\subsubsection{Module Decomposition Semantics}
+Following the table in the previous section, the following items below provide a more detailed
+description of the rationale behind the modular decomposition of the design.
+\begin{itemize}
+\item \textbf{Basic Representation:} Since the application makes use of 
+coordinates on a two-dimensional plane, the Cord API makes available a 
+convenient coordinate ADT that is used whenever a point in the plane needs
+to be represented or stored.
+\item \textbf{Clustering:} KMeans and its associated ADT, Clusters, are used
+to compute clusters from a random number of points. Clusters are stored in the
+ADT as a point representing the mean of the cluster, called the centroid.
+All points associated to the centroid are stored in the ADT as well
+\item \textbf{Minimum Spanning Tree:} Kruskal's algorithm is used to generate
+the minimum spanning tree of the clusters' centroids. All the associated modules
+are helpers to the algorithm, such as union-find, sorting, and graph/edge
+representations.
+\item \textbf{Input and Output:} This can be divided by itself into two parts:
+input and output. Load is the input routine of the application: It leverages
+countsort to sort input data according to the pickup time which is 
+partitioned by th 24-hour system. The other two modules are used to collect
+output from the algorithms and display it on a graphic canvas.
+\end{itemize}
+
+\newpage
+\subsubsection{Uses Relation}
+An overlay of the application can be viewed in the Uses relationship below:
+
+\newpage
+\subsubsection{UML Class Diagram}
+An overlay of the application can be viewed in the UML class diagram below:
+
+\newpage
+\subsection{Module Interface Specification}
+This section will cover:
+\begin{itemize}
+\item A description of the interface of each public entity, as well as its syntax
+and semantics
+\item A description of the implementation of private entities of each module,
+state variables and how the methods maintain these state variables
+\item Requirements trace back for each module
+\end{itemize}
+
+\newpage
+\subsection{UML State Machine Diagrams}
+The diagrams below are UML State Machine Diagrams for KMeans and KruskalMST
+
+\newpage
+\section{Internal Review and Evaluation}
+The internal review is as follows:
+\end{document}

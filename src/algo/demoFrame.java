@@ -160,14 +160,14 @@ public class demoFrame extends javax.swing.JFrame{
 		
 		HashMap<Integer,ArrayList<Cord>> cords = data.getData();
 		
-		
+		int numClusters = 10;
 		
 		System.out.println(cords.size());
 		ArrayList<Cord> centroids = new ArrayList<Cord>();
 		for(int i = 0;i<24;i++) {
 			centroids.clear();
-			ArrayList<Cord> means = KMeans.calculateMeans(10,cords.get(i).size(),cords.get(i),1000000);
-			Cluster[] clusters = KMeans.assignToClusters(means,cords.get(i),10);
+			ArrayList<Cord> means = KMeans.calculateMeans(numClusters,cords.get(i).size(),cords.get(i),1000000);
+			Cluster[] clusters = KMeans.assignToClusters(means,cords.get(i),numClusters);
 			
 			
 			for(Cluster c: clusters) {

@@ -40,9 +40,11 @@ OptimizeU will have the following information:
 	\item \textbf{Uber pickups Dataset}:\\
 	       Used to generate cluster information and pickup hotspots for
 	       drivers to locate and pickup passengers
-	\item \textbf{Client-Server Interface}:\\
-	       Information is stored server-side. Users (drivers) fetch data
-	       from the server by input from the client.
+	\item \textbf{Graphical Interface}:\\
+	       The output of algorithms performed on the dataset will be
+	       displayed in a graphical user interface (GUI). Users will
+	       navigate the GUI to obtain their desired information, such as 
+	       optimized route for a particular time of the day.
 \end{itemize} 
 A more detailed functional and non-functional specification will be 
 discussed later below.
@@ -86,30 +88,23 @@ the form of a table), and a use-case diagram.
   \hline
   \textbf{Created By:} & SE2XB3 2018 Group 8\\
   \hline
-  \textbf{Description:} & Uber driver submits a request for optimized routes to OptimizeU Server\\
+  \textbf{Description:} & Uber driver instantiates the OptimizeU application\\
   \hline
-  \textbf{Actors:} & Uber driver, OptimizeU Server, OptimizeU Client User Interface\\
+  \textbf{Actors:} & Uber driver, OptimizeU Application\\
   \hline
-  \textbf{Preconditions:} & 1. Uber driver has access to the Client User Interface\\
-  						  & 2. OptimizeU has fully functional Client and Server\\
+  \textbf{Preconditions:} & 1. Uber driver has access to the OptimizeU application\\
+  						  & 2. OptimizeU is fully functional\\
   						  & 3. Driver is in New York City area\\
-  						  &	4. Dataset and server security is not compromised\\
+  						  &	4. Security of the application or device is not compromised\\
   \hline
-  \textbf{Postconditions:} & 1. Client retrieves and displays requested information successfully\\
+  \textbf{Postconditions:} & 1. Application retrieves and displays requested information successfully\\
                           & 2. Drivers get optimized routes from OptimizeU\\
   \hline
-  \textbf{Flow:} & 1. Driver makes a request to OptimizeU server through the client\\
-                 & 2. OptimizeU sends information about driver's location and timeframe to server\\
-                 & 3. Server fetches dataset\\
-                 & 4. Server uses dataset and driver information to process an optimized output\\
-                 & 5. Server sends output information back to client\\
-                 & 6. Driver uses information received as their driving route\\
-  \hline
-  \textbf{Alternate Flow:} & In Step 2, if driver's time is abnormal (e.g. past midnight times)\\
-                           & 1. Proceed as normal up to step 5\\
-                           & 2. Send a warning about possibly inaccurate information together with the \\
-                           &    output data back to the client\\
-                           & 3. Display warning to driver\\
+  \textbf{Flow:} & 1. Driver makes a request to the OptimizeU application\\
+                 & 2. Application fetches dataset\\
+                 & 4. Application uses dataset to process an optimized output\\
+                 & 5. Application presents a GUI for the Driver to navigate\\
+                 & 6. Driver uses GUI received to obtain the optimized driving route by hour of driving\\
   \hline
 \end{tabular}
 \end{adjustbox}
@@ -124,10 +119,10 @@ the form of a table), and a use-case diagram.
 \subsection{Performance and Accuracy of Results}
 OptimizeU should have the following capabilities:
 \begin{itemize}
-	\item \textbf{Adequate server-client response time:}\\
+	\item \textbf{Adequate Application processing time:}\\
 		Users should expect to get results within a reasonable time frame after submitting
-		a request to the OptimizeU server. Depending on server load and external factors,
-		users should expect a response within 10 to 15 seconds.
+		a request to the application. Depending on any external factors,
+		users should expect a response within 3 seconds.
 	\item \textbf{Consistent, accurate output}\\
 		OptimizeU should consistently generate meaningful output for drivers to act on.
 		An example being clustering that makes sense (e.g. a mega-cluster covering an 
@@ -140,38 +135,36 @@ OptimizeU should possess the following software quality attributes:
 		Generate optimized paths that are actually of use to the user. See the above
 		section on consistency for an example.
 	\item \textbf{Security:}\\
-		Since this is a client-server interface, users should be assured that 
-		any sensitive information sent (for example, location) is properly handled
-		and safeguarded against malicious intent. This can probably be done via
-		HTTPS. The server should also be protected against attacks, but this will
-		not be the main focus of the project.
+		As the dataset operates locally, care must be taken to ensure that the dataset
+		is not compromised by any external factors, either intentionally or 
+		unintentionally. Any compromise on the dataset will cause the entire application
+		to fail or generate inaccurate output, which will affect the performance and 
+		safety of its users.
 	\item \textbf{Safety:}\\
 		OptimizeU should ensure driver safety by providing appropriate route information.
 		For example, routes should obey flow-of-traffic rules. This will probably
 		be implemented as an extra feature, as this is not in scope of the project.
 	\item \textbf{Portability Issues:}\\
-		OptimizeU is portable client-side as it is implemented using HTML. However,
-		programmers may have to account for server-side context, but it should not
-		be an issue since it is implemented using portable Java code.
+		OptimizeU should be functional on relevant platforms. Since this is intended
+		to complement the popular driving/on-hire app Uber, the intended platforms will
+		be iOS and Android smartphones. Hence, it should be downloadable and usable 
+		by users of both operating systems.
 \end{itemize}
 \section{Requirements on the Development and Maintenance Process}
 \subsection{System test procedures}
 The following system test must be carried out before the final product is ready:
 \begin{itemize}
-	\item \textbf{Algorithm testing}\\
+	\item \textbf{Algorithm/White box testing}\\
 		Test critical algorithms rigorously to ensure that accurate information
 		is always delivered to users.
-	\item \textbf{Server testing}\\
-		Test that the server functions as intended to process client input and
-		sends correct information.
-	\item \textbf{Client interface testing}\\
-		Ensure that client interface are standardized to HTML and provide
-		an acceptable user experience.
+	\item \textbf{GUI/Black box testing}\\
+		Results that are being displayed must be tested to ensure output that is useful,
+		consistent and beneficial to users.
 \end{itemize}
 \subsection{Priorities of Required Functions}
-A list of required functions (on server backend) and their corresponding priorities are listed:
+A list of required functions and their corresponding priorities are listed:
 \begin{itemize}
-	\item \textbf{k-medoids}\\
+	\item \textbf{K-Means}\\
 		The clustering algorithm that is planned to be implemented. Must work on
 		every occasion save on faulty or abnormal user input
 	\item \textbf{Kruskal}\\
@@ -181,13 +174,13 @@ A list of required functions (on server backend) and their corresponding priorit
 \subsection{Likely changes to System Maintenance Procedures}
 \begin{itemize}
 	\item Seperate tests may be carried out on similar algorithms (e.g. Prim vs Kruskal,
-	k-means vs k-medoids etc.) if performance suffers. Change if necessary as well.
-	\item Client-side maintenance as an iterative process: Since user experience 
-	relies on feedback to a certain extent, the client-side interface may be
-	constantly modified, On each iteration, its communication with the server
-	must always be tested to ensure flawless communication.
-	\item Security testing: Testing to check server compromisation should be carried
-	out AND MODIFIED periodically to ensure that attackers do not gain improper access to 
-	server-side information or user information. 
+	K-Means vs K-Medoids etc.) if performance suffers. Change if necessary as well.
+	\item Cluster generation: Since K-Means is strictly a heuristic, procedures can be 
+	carried out to slightly modify clustering amounts to test the performance of each
+	amount. An optimal amount can be selected, possibly for different input hours.
+	\item Dataset updates: Since new data is constantly being created, OptimizeU may
+	integrate additional datasets into the application to allow more accurate information
+	to be available for users. Being able to sort output by month is the next step
+	for OptimizeU.
 \end{itemize}
 \end{document}

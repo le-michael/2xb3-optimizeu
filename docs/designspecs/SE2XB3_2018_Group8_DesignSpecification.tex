@@ -6,6 +6,8 @@
 \usepackage{booktabs}
 \usepackage{tabularx} % Resizable tabular environment
 
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+
 \pagestyle{plain}
 \pagenumbering{arabic}
 
@@ -1125,7 +1127,7 @@ previouly included. UF instance keeps track of checking for disjointness
 getEdges():\\
 \textit{Returns the edges included in the minimum spanning tree}
 \begin{itemize}
-output: $out := \mbox{edges}$
+\item output: $out := \mbox{edges}$
 \end{itemize}
 
 \noindent
@@ -1133,21 +1135,152 @@ toString():\\
 \textit{Java's toString override, shows edges that are in the minimum spanning tree
 as a string representation.}
 
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Load Module}
+
+\subsection* {Top Level Description}
+
+Loads the dataset into the program. Implicitly sorts and hashes each input row as well 
+from the input CSV
+
+\subsection*{Module}
+
+Load
+
+\subsection* {Uses}
+
+HashMap, ArrayList, Cord, Java IO
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+Load = ?
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out}\\
+\hline
+Load & ~ & ~ \\
+\hline
+getData & ~ & HashMap of $<\mathbb{N}, \mbox{seq of Cord}>$\\
+\hline
+\end{tabular}
+
+\subsubsection* {Private Access Programs}
+
+\begin{tabular}{| l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out}\\
+\hline
+normalizeData & ~ & ~ \\
+\hline
+cordToPixel & $\mathbb{R}, \mathbb{R}, \mathbb{N}, \mathbb{N}$ & Cord\\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+minima: Cord\\
+maxima: Cord\\
+data: HashMap of $<\mathbb{N}$, seq of Cord$>$
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Access Program Semantics}
+
+Load():\\
+\noindent
+Reads the dataset of Uber pickups from the dataset. For each row, the following occurs:
+\begin{itemize}
+\item The item is classified according to the pickup hour. In other words, Countsort occurs
+as the data is being processed.
+\item The pickup coordinates, which are in latitude and longitude, are converted to fit
+a graphical interface. In other words, pixels are used to represent pickup locations
+and the geographical map.
+\item The data is put into the HashMap data state variable with the pickup time as key and 
+pickup coordinates as value.
+\end{itemize}
+Note that maxima (top right) and minima (bottom right) of the frame of the graphical
+interface is recorded as well to obtain the boundaries of the input data.\\
+\noindent
+Lastly, each data point is normalized to fit the boundaries of the graphical interface.\\
+
+\noindent
+getData():\\
+\textit{Returns the result of Load initialization}
+\begin{itemize}
+\item output: $out := \mbox{data}$
+\end{itemize}
+
+\subsubsection* {Private Program Semantics}
+\noindent
+normalizeData():\\
+\textit{Normalizes the data to fit into the display frame, using minima and maxima to obtain
+the normalization.}\\
+
+\noindent
+cordToPixel(longitude, latitude, mapWidth, mapHeight):\\
+\textit{Converts from latitude-longitude to a pixel representation}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 
+\section*{drawSurface Module}
 
+\subsection* {Top Level Description}
 
+Graphics package, using JFrame graphics library. This module is used to convert ADTs into
+a graphical context, such as points and lines. \textbf{The class interface, syntax and semantics will
+not be specified as this is out of the project's scope.}
 
+\subsection*{Module}
 
+drawSurface
 
+\subsection* {Uses}
 
+HashMap, Cord, Edge, Cluster
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 
+\section*{demoFrame Module}
 
+\subsection* {Top Level Description}
 
+Main function for the application. As the module deconstruction is too lengthy, instead
+the $\mname{main}$ function's procedure will be listed:
 
+\begin{enumerate}
+\item Invokes Load to get input data, sorted by hours
+\item Set required amount of clusters. This has to be in accordance to requirements, such
+that a number chosen can generate clusters consistently.
+\item Once data input is complete, use KMeans public functions, $\mname{calculateMeans}$ and
+      $\mname{assignToClusters}$ to obtain Cluster objects. 
+\item Cluster centroids are passed into Graph and KruskalMST to get information about centroid
+connectivity and minimum spanning tree respectively.
+\item The results are passed into the drawSurface module to generate the graphical interface.
+\end{enumerate}
 
+\subsection*{Module}
+
+demoFrame
+
+\subsection* {Uses}
+
+HashMap, ArrayList, Cord, Edge, Cluster, Graph, KruskalMST, KMeans,
+drawSurface, Load
 
 \newpage
 
@@ -1156,5 +1289,69 @@ The diagrams below are UML State Machine Diagrams for KMeans and KruskalMST
 
 \newpage
 \section{Internal Review and Evaluation}
-The internal review is as follows:
+
+The internal review and evaluation process addresses two important factors of any 
+software product: Verification and Validation. We evaluate based on code testing
+to verify that the product is working right and review that the right product
+is being built by tracing back to specifications, particularly non-functional
+specifications, as functional specifications are covered in the modular
+decomposition section in more detail.
+
+\subsection{Verification}
+\subsubsection{White Box Testing}
+For each module, a white box testing procedure is carried out to verify that each
+individual components are functioning as expected. Test cases such as boundary 
+cases, exception cases and abnormal input are taken into consideration. Each test
+case will also obey module interface specification limits and assumptions: For example,
+a negative number will not be tested on a function that only accepts $\mathbb{N}$.
+
+\begin{itemize}
+\item Cord
+\item Cluster
+\item KMeans
+\item Edge
+\item Graph
+\item Heap
+\item UF
+\item KruskalMST
+\item Load
+\end{itemize}
+
+\newpage
+
+\subsubsection{Black Box Testing}
+The modules not included for white box testing in the above section, drawSurface and demoFrame,
+are used for black box testing. The purpose is to verify the output given a valid input into
+the program. Testing is mainly done on demoFrame as it is the driver of the entire program.
+Testing parameters taken into consideration are:
+
+\begin{itemize}
+\item Cluster consistency: Since K-Means is a heuristic that randomly selects start points of centroids,
+the goal of such a test is to check whether generated cluster hotspots are consistent on each run.
+\item Cluster amounts: Since K-Means allows the amount of clusters to be generated to be modified,
+several cluster amounts are tested to generate the most consistent and user-friendly output. Too many
+clusters may hamper the ability of users to consult the application for its uses, while too few clusters
+will provide an inaccurate representation of pickups in the city. Consistency issues are addressed by
+testing consistent output for the same amount of clusters.
+\item Program runtime: Since the application is intended to be used in real-time, the algorithm and graphical
+generation should not exceed a certain threshold, or it may become unusable by its users. This ties to
+the requirement that the application should not take more than 3 seconds to complete.
+\end{itemize}
+
+\newpage
+
+\subsection {Validation}
+The goal of validation is to ensure a correct product, i.e. a product that satisfies requirements, is built.
+We evaluate based on non-functional specifications of the product, i.e. software qualities of the
+application, and qualify how the project has met each requirement.
+\begin{itemize}
+\item Reliability: As consistency is constantly emphasized as an important attribute, care is taken
+to ensure the algorithm generates similar or equivalent outputs for each run. Steps such as choosing
+optimal cluster size is carried out to ensure that consistency is not compromised.
+\item Security, Safety, Portability: Out of scope of this project. However, 
+if the project scale were to increase, it should be of main concern that the
+ platform of this application is secure.
+\end{itemize}
+
+
 \end{document}

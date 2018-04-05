@@ -1,5 +1,7 @@
 \documentclass[12pt]{article}
 
+\usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{fullpage}
 \usepackage{booktabs}
 \usepackage{tabularx} % Resizable tabular environment
@@ -110,7 +112,7 @@
 \begin{table}[h]
 \begin{tabular}{| l | l | l |}
 \hline
-Name & Student Number & Roles \\ 
+\textbf{Name} & \textbf{Student Number} & \textbf{Roles} \\ 
 \hline
 Michael Le & 400070369 & Group Leader, Graphics Implementation\\ 
 \hline
@@ -140,15 +142,15 @@ Note: Member roles are outlines in \textbf{Revisions: Team Details}
 \begin{table}[h]
 \begin{tabularx}{\textwidth}{|l|X|X|}
 \hline
-Name & Contributions & Comments \\
+\textbf{Name} & \textbf{Contributions} & \textbf{Comments} \\
 \hline
 Lucas Dutton & Implemented Kruskals, K-Means and Associated ADT
                (Abstract Data Type)
              & Responsible for implementing and updating algorithms
                with any project changes\\
 \cline{2-3}
-~ & Project Log and Meeting Minutes admin 
-  & Responsible for monitoring and updating Project Logs\\
+~ & Project Log admin 
+  & Responsible for monitoring and approving Project Logs\\
 \cline{2-3}
 ~ & Documentation editor
   & Responsible for creating and sharing documents such as 
@@ -161,6 +163,8 @@ Michael Le & Implemented graphical representation of outputs
 ~ & Implemented graphical ADTs 
   & Cluster and Cord ADTs made for interaction between algorithms
     and graphics\\
+\cline{2-3}
+~ & Source Code documentation & Comment each methods in each module\\
 \hline
 Saad Khan & Presentation Facilitator 
           & Responsible for organizing presentation slides\\
@@ -171,8 +175,8 @@ Saad Khan & Presentation Facilitator
 Omar Elemary & Meeting Minutes upkeep
              & Responsible for creating and updating project logs\\
 \cline{2-3}
-~ & Algorithms research
-  & Responsible for researching algorithms in the project proposal\\
+~ & Unit tester
+  & Responsible for testing each modules and the application\\
 \hline
 \end{tabularx}
 \end{table}
@@ -199,9 +203,9 @@ passengers and maximize profits of Uber drivers.
 The table below shows a top-level view of each class in the application. Classes are grouped
 by their functionality and dependency on one another.
 \begin{table}[h]
-\begin{tabularx}{\textwidth}{|l|X|X|}
+\begin{tabularx}{\textwidth}{|l|l|X|}
 \hline
-Function & Class Name & Description\\
+\textbf{Function} & \textbf{Class Name} & \textbf{Description}\\
 \hline
 Basic Representation & Cord & 2-Dimensional representation of coordinates\\
 \hline
@@ -273,7 +277,880 @@ state variables and how the methods maintain these state variables
 \item Requirements trace back for each module
 \end{itemize}
 
+\noindent
+Several items should be noted about the module specifications:
+\begin{itemize}
+\item Where possible, a more formal, mathematical notation similar to conventions 
+used in SE2AA4 will be used.
+\item A natural language description will be used for methods that are too
+complicated or incomprehensible to be expressed with discrete mathematics
+\item Each module specification will cover both public and private entities. Care
+is taken to seperate between the two for each module to prevent ambiguity issues.
+\end{itemize}
+
 \newpage
+
+\section*{Cord Module}
+
+\subsection*{Top Level Description}
+
+An abstract data type to represent a point in a two-dimensional space
+
+\subsection*{Module}
+
+Cord
+
+\subsection* {Uses}
+
+N/A
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+Cord = ?
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out}\\
+\hline
+Cord & $\mathbb{R}$, $\mathbb{R}$ & Cord\\
+\hline
+getX & ~ & $\mathbb{R}$\\
+\hline
+getY & ~ & $\mathbb{R}$\\
+\hline
+setX & $\mathbb{R}$ & ~\\
+\hline
+setY & $\mathbb{R}$ & ~\\
+\hline
+toString & ~ & String \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+$xc$: $\mathbb{R}$\\
+$yc$: $\mathbb{R}$
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Access Routine Semantics}
+
+Cord($x$,$y$):\\
+\textit{Constructor for a coordinate point in a 2D-plane}
+\begin{itemize}
+\item transition: $xc, yc := x, y$
+\item output: $out := \mathit{self}$
+\end{itemize}
+
+\noindent
+getX():\\
+\textit{Accessor for the x-coordinate}
+\begin{itemize}
+\item output: $out := xc$
+\end{itemize}
+
+\noindent
+getY():\\
+\textit{Accessor for the y-coordinate}
+\begin{itemize}
+\item output: $out := yc$
+\end{itemize}
+
+\noindent
+setX(x):\\
+\textit{Mutator for the x-coordinate}
+\begin{itemize}
+\item transition: $xc := x$
+\item output: None
+\end{itemize}
+
+\noindent
+setY(y):\\
+\textit{Mutator for the y-coordinate}
+\begin{itemize}
+\item transition: $yc := y$
+\item output: None
+\end{itemize}
+
+\noindent
+toString():\\
+\textit{Override for Java method toString. Represents a coordinate in the
+form of a string "(x,y)" where x and y are xc and yc respectively}.
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Cluster Module}
+
+\subsection* {Top Level Description}
+
+Stores the centroid of a clusters and points associated with the cluster.
+
+\subsection*{Module}
+
+Cluster
+
+\subsection* {Uses}
+
+Cord, Color, ArrayList
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+Cluster = ?
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out}\\
+\hline
+Cluster & $\mathbb{R}$, $\mathbb{R}$ & Cluster\\
+\hline
+getColor & ~ & $Color$\\
+\hline
+getSize & ~ & $\mathbb{N}$\\
+\hline
+getCenter & ~ & Cord \\
+\hline
+getPoints & ~ & sequence of Cord\\
+\hline
+insertCord & Cord & ~ \\
+\hline
+printCluster & ~ & ~ \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+centroid: Cord\\
+points: seq of Cord\\
+c: Color
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions}
+\begin{itemize}
+\item c : Color represents the color of the cluster when drawn with Java's graphics
+library
+\item centroid represents a Cluster's centroid
+\item points represents the Cord points associated with the centroid
+\end{itemize}
+
+\subsubsection* {Access Routine Semantics}
+
+Cluster(x,y):\\
+\textit{Constructor for Cluster Object}
+\begin{itemize}
+\item transition: points, centroid, c $:=  <>, \mbox{Cord}(x,y), \mbox{random Color}$
+\item output: $out := \mathit{self}$
+\end{itemize}
+
+\noindent
+getColor():\\
+\textit{Return the color of the cluster}
+\begin{itemize}
+\item output: $out := c$
+\end{itemize}
+
+\noindent
+getSize():\\
+\textit{Return the number of points associated with the cluster}
+\begin{itemize}
+\item output: $out := |\mbox{points}|$
+\end{itemize}
+
+\noindent
+getCenter():\\
+\textit{Returns the Cord representing the centroid}
+\begin{itemize}
+\item output: $out := \mbox{centroid}$
+\end{itemize}
+
+\noindent
+getPoints():\\
+\textit{Returns the sequence of points associated to the cluster}
+\begin{itemize}
+\item output: $out := \mbox{points}$
+\end{itemize}
+
+\noindent
+insertCord(n):\\
+\textit{Insert a point into the sequence of Cord, associating the inserted
+point with the cluster}
+\begin{itemize}
+\item transition: $\mbox{points} := \mbox{points} || n$
+\item output: None
+\end{itemize}
+
+\noindent
+printCluster():\\
+\textit{Prints each Cord object in the sequence of coordinates}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{KMeans Library Module}
+
+\subsection* {Top Level Description}
+
+A module that clusters points using K-Means classification
+
+\subsection*{Module}
+
+KMeans
+
+\subsection* {Uses}
+
+Cord, Cluster
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+KMeans = ?
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out}\\
+\hline
+calculateMeans & $\mathbb{N}, \mathbb{N}, \mathbb{N}$, seq of Cord & seq of Cord\\
+\hline
+assignToClusters & seq of Cord, seq of Cord, $\mathbb{N}$ & seq of Cluster\\
+\hline
+\end{tabular}
+
+\subsubsection* {Private Access Programs}
+
+\begin{tabular}{| l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out}\\
+\hline
+findColsMin & seq of Cord & Cord\\
+\hline
+findColsMax & seq of Cord & Cord\\
+\hline
+dist & Cord, Cord & $\mathbb{R}$ \\
+\hline
+updateMean & $\mathbb{N}$, Cord, Cord & ~ \\
+\hline
+classify & seq of Cord, Cord & $\mathbb{N}$ \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+None
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions}
+
+\begin{itemize}
+\item calculateMeans is called to obtain cluster centroids before a call
+to assignToClusters.
+\item Cluster sizes remain consistent between the two method calls.
+\end{itemize}
+
+\subsubsection* {Access Routine Semantics}
+
+calculateMeans(k, datasize, maxIterations, items :: seq of Cord):\\
+KMeans Clustering heuristic. Takes as input:
+\begin{itemize}
+\item k: The amount of clusters to generate
+\item datasize: The size of the input data
+\item maxIterations: Loop termination count, in the event that the
+heuristic is non-deterministic.
+\item items: The input data of Cords as a sequence
+\end{itemize}
+\noindent
+Returns as output a set of cluster centroids as calculated from the 
+input parameters.\\
+
+\noindent
+assignToClusters(means, items, k : $\mathbb{N}$):\\
+Associate each input point with centroids calculated from calculateMeans.
+Takes as input:
+\begin{itemize}
+\item k: The amount of clusters to generate
+\item means: The centroids generated from calculateMeans
+\item items: The input points
+\end{itemize}
+Returns as output a sequence of Cluster objects, each representing
+points associated to a centroid.
+
+\subsubsection* {Private Routine Semantics}
+findColsMin(items):\\
+\textit{Output the point denoting the bottom left of the map used to calculate clusters}
+\begin{itemize}
+\item output: $out := \exists (c : \mbox{Cord} | c \in \mbox{items} \land
+                      \forall (n : \mathbb{N} | n \in [0..|\mbox{items}|-1] :
+                      c \leq \mbox{items}[n]) : c)$
+\end{itemize}
+
+\noindent
+findColsMan(items):
+\textit{Output the point denoting the bottom left of the map used to calculate clusters}
+\begin{itemize}
+\item output: $out := \exists (c : \mbox{Cord} | c \in \mbox{items} \land
+                      \forall (n : \mathbb{N} | n \in [0..|\mbox{items}|-1] : 
+                      c \geq \mbox{items}[n]) : c)$
+\end{itemize}
+
+\noindent
+dist($a$, $b$):
+\textit{Compute the Euclidean distance between two coordinates}
+\begin{itemize}
+\item output: $out := \sqrt{(b.xc-a.xc)^{2} + (b.yc-a.yc)^{2}}$
+\end{itemize}
+
+\noindent
+updateMean(size : $\mathbb{N}$, mean, item):\\
+\textit{Updates the mean centroid after adding associating an additonal point to it}
+\begin{itemize}
+\item transition: $mean := (\mbox{mean}*(\mbox{size}-1) + \mbox{item})/\mbox{size}$
+\item output: None
+\end{itemize}
+
+\noindent
+classify(means, item : Cord):\\
+\textit{Classifies a point to the nearest centroid, returns the index in which the
+point is associated to in the sequence of centroids}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Edge Module}
+
+\subsection* {Top Level Description}
+
+An object representing weighted edges in a two-dimensional graph
+
+\subsection*{Module}
+
+Edge
+
+\subsection* {Uses}
+
+Cord
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+Cord = ?
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out}\\
+\hline
+Edge & Cord, Cord & Edge\\
+\hline
+weight & ~ & $\mathbb{R}$\\
+\hline
+first & ~ & Cord \\
+\hline
+second & Cord & Cord\\
+\hline
+compareTo & Edge & $\mathbb{Z}$\\
+\hline
+toString & ~ & String\\
+\hline
+\end{tabular}
+
+\subsubsection* {Private Access Programs}
+
+\begin{tabular}{| l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out}\\
+\hline
+dist & Cord, Cord & $\mathbb{R}$ \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+$x$: Cord\\
+$y$: Cord\\
+weight: $\mathbb{R}$
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Access Routine Semantics}
+
+Edge(X,Y):\\
+\textit{Constructor of an Edge object}
+\begin{itemize}
+\item transition: $x, y, weight := X, Y, dist(X,Y)$
+\item output: $out := \mathit{self}$
+\end{itemize}
+
+\noindent
+weight():\\
+\textit{Accessor for the weight of the edge}
+\begin{itemize}
+\item output: $out := weight$
+\end{itemize}
+
+\noindent
+first():\\
+\textit{Returns the point stored in the state variable x}
+\begin{itemize}
+\item output: $out := x$
+\end{itemize}
+
+\noindent
+second(point):\\
+\textit{Returns the point that connects from the input point}
+\begin{itemize}
+\item output: $out := point = \mbox{point} = y \Rightarrow x | \mbox{point} = x \Rightarrow y$
+\item exception: $exc := point \neq x \lor y \Rightarrow IllegalArgumentException$
+\end{itemize}
+
+\noindent
+compareTo(that):\\
+\textit{Implemens compareTo for Java's comparable interface. Used for sorting edges by weight.}
+\begin{itemize}
+\item output: \\\\
+\begin{tabular}{| l | l |}
+\hline
+\textbf{Condition} & \textit{out}\\
+\hline
+weight $<$ that.weight & -1 \\
+\hline
+weight $>$ that.weight & 1 \\
+\hline
+weight $\equiv$ that.weight & 0 \\
+\hline
+\end{tabular}
+\end{itemize}
+
+\noindent
+toString():\\
+\textit{Java override of toString method. Prints the details of the Edge object}
+
+\subsubsection* {Private Routine Semantics}
+dist($a$, $b$):
+\textit{Compute the Euclidean distance between two coordinates. Used for calculating the weight
+of the edge}
+\begin{itemize}
+\item output: $out := \sqrt{(b.xc-a.xc)^{2} + (b.yc-a.yc)^{2}}$
+\end{itemize}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Heap Library Module}
+
+\subsection* {Top Level Description}
+
+Heapsorts an array of Comparable Objects. Used in KruskalMST to sort an array of Edges.
+
+\subsection*{Module}
+
+Heap
+
+\subsection* {Uses}
+
+None
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+Heap = ?
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out}\\
+\hline
+sortHeap & seq of Comparable, $\mathbb{N}$ & ~ \\
+\hline
+\end{tabular}
+
+\subsubsection* {Private Access Programs}
+
+\begin{tabular}{| l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out}\\
+\hline
+sink & seq of Comparable, $\mathbb{N}, \mathbb{N}$ & ~ \\
+\hline
+lessThan & Comparable, Comparable, & $\mathbb{B}$ \\
+\hline
+heapExch & seq of Comparable, $\mathbb{N}, \mathbb{N}$ & ~ \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+None
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Access Routine Semantics}
+
+sortHeap($x$ : seq of Comparable, $n$ : $\mathbb{N}$):\\\\
+Calls heapsort on the array $x$ of size $n$. The process is twofold:
+\begin{enumerate}
+\item Builds the heap from the array. The array will obey the max heap property
+      after this process terminates
+\item Sorts the array using $n$ extractMaxes
+\end{enumerate}
+
+\noindent
+Formally, sortHeap produces an output array which satisfies the following property:\\
+
+$\forall (n : \mathbb{N} | n \in [1..|x|-1] : x[n] \geq x[n-1])$\\
+
+\noindent
+sortHeap happens in-place, which is important in this application as processing a large
+dataset may constrain available memory.
+
+\subsubsection* {Private Routine Semantics}
+
+sink($x$ : seq of Comparable, $n$ : $\mathbb{N}$, length : $\mathbb{N}$):\\
+A helper function used to sink elements in a heap. Takes as input:
+\begin{itemize}
+\item $x$: an array of Comparable objects
+\item $n$: The index of the element to sink
+\item length: The size of x
+\end{itemize}
+This function is used to fix any violations in the max heap property.\\
+
+\noindent
+lessThan(a, b):\\
+\textit{Compares a and b using Java's compareTo implementation}\\
+
+\noindent
+heapExch($arr$, $i$ ,$j$):\\
+\textit{Swaps elements at index i and j. This accounts for heaps having 1-index starts}
+\begin{itemize}
+\item transition: $arr[i-1], arr[j-1] := arr[j-1], arr[i-1]$
+\end{itemize}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Graph Module}
+
+\subsection* {Top Level Description}
+
+Representation of a directed graph, in the specific application domain of representing
+the output of clustering with K-Means using cluster centroids as nodes and edges as
+the connection between each point.
+
+\subsection*{Module}
+
+Graph
+
+\subsection* {Uses}
+
+Edge, Cord, ArrayList
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+Graph = ?
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out}\\
+\hline
+Graph & $\mathbb{N}$, seq of Cord & Graph\\
+\hline
+centroids & ~ & $\mathbb{N}$\\
+\hline
+edgeCount & ~ & $\mathbb{N}$\\
+\hline
+edges & ~ & seq of Edge\\
+\hline
+points & ~ & seq of Cord \\
+\hline
+sortEdges & ~ & ~ \\
+\hline
+toString & ~ & ~ \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+Centroids: $\mathbb{N}$ \\
+edgeCount: $\mathbb{N}$ \\
+edges: seq of Edge\\
+points: seq of Cord
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Access Routine Semantics}
+
+Graph(k, means):\\
+\textit{Creates a graph representation of cluster centroids}
+\begin{itemize}
+\item transition: $\mbox{Centroids, edgeCount, points, edges} :=
+                   \mbox{k}, (k*(k-1))/2, \mbox{means}, 
+                   \forall (n : \mathbb{N} | n \in [0..|means|-2] \land 
+                   \forall (p : \mathbb{N} | p \in [n+1..|means|-1] \land n \neq p) :
+                   \mbox{Edge}(\mbox{edges.get}(n),\mbox{edges.get}(p)))$
+\item output: $out := \mathit{self}$
+\end{itemize}
+
+\noindent
+centroids():\\
+\textit{Accessor for number of centroids}
+\begin{itemize}
+\item output: $out := \mbox{Centroids}$
+\end{itemize}
+
+\noindent
+edgeCount():\\
+\textit{Returns the number of edges in the graph}
+\begin{itemize}
+\item output: $out := \mbox{edgeCount}$
+\end{itemize}
+
+\noindent
+edges():\\
+\textit{Returns all edges objects that are in the graph as a sequence}
+\begin{itemize}
+\item output: $out := \mbox{edges}$
+\end{itemize}
+
+\noindent
+points():\\
+\textit{Returns all points (vertices) represention the graph as a sequence}
+\begin{itemize}
+\item output: $out := \mbox{points}$
+\end{itemize}
+
+\noindent
+sortEdges():\\
+\textit{Sorts the edges that are in the state variable} edges\\
+
+
+\noindent
+toString():\\
+\textit{Java override of representing an object as a String. Prints all edges
+present in the graph.}
+
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{UF Module}
+
+\subsection* {Top Level Description}
+
+Stores connected points in a graph. Essential for Kruskal's Algorithm to work.
+
+\subsection*{Module}
+
+UF
+
+\subsection* {Uses}
+
+Cord, ArrayList, HashMap
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+UF = ?
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out}\\
+\hline
+UF & $\mathbb{N}$, seq of Cord & UF\\
+\hline
+connected & Cord, Cord & $\mathbb{B}$\\
+\hline
+find & Cord & $\mathbb{N}$\\
+\hline
+union & Cord, Cord & ~ \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+parent: seq of $\mathbb{N}$\\
+size: seq of $\mathbb{N}$\\
+dict: HashMap of $<$Cord, $\mathbb{N}>$
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Access Program Semantics}
+
+UF(k, means):\\
+\textit{Constructor of a Union Find data structure. Creates a bijection between
+input centroids and enumerable natural numbers in the HashMap construction. This
+allows UF operations to operate on natural numbers instead of abstract types. }\\
+\noindent
+Transition of state variables on initialization:
+\begin{itemize}
+\item parent: Seq of integers with element equals the index
+\item size: Seq of integers with element equals one
+\item dict: Bijection relation between Cord input and an enumerated integer
+\end{itemize}
+
+\noindent
+connected(p, q):\\
+\textit{Answers the question: Are p and q in the same set?}
+\begin{itemize}
+\item output: $out := \mbox{find(p)} \equiv \mbox{find(q)}$
+\end{itemize}
+
+\noindent
+find($p$):\\
+\textit{Finds the parent index of the node}
+\begin{itemize}
+\item output: $out := \mbox{dict.get}(p) = \mbox{parent}[p] \Rightarrow p | \mbox{find(parent}[p])$
+\end{itemize}
+
+\noindent
+union(p, q):\\
+Takes two disjoint sets and performs a union on both sets. Internally, this will:
+\begin{itemize}
+\item Make both sets belong to the same parent in the parent sequence
+\item Adjust the size of sets in the size sequence
+\end{itemize}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{KruskalMST Module}
+
+\subsection* {Top Level Description}
+
+Builds the minimum spanning tree of a given graph
+
+\subsection*{Module}
+
+KruskalMST
+
+\subsection* {Uses}
+
+Edges, UF, Graph
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+KruskalMST = ?
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out}\\
+\hline
+KruskalMST & Graph & ~ \\
+\hline
+getEdges & ~ & seq of Edge \\
+\hline
+toString & ~ & String\\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+edges: seq of Edges
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Access Program Semantics}
+
+KruskalMST(G):\\
+Constructs a minimum spanning tree from the given graph. Stores the edges
+that makes up the MST graph in a sequence of edges.\\
+\noindent
+The procedure and the corresponding use relations are characterized as follows:
+\begin{itemize}
+\item Calls sortEdges from Graph module to sort each edge according to their weight
+\item Calls a UF instance to keep track of sets of edges
+\item For each shortest edge, add it to the edges state variable if it was not
+previouly included. UF instance keeps track of checking for disjointness
+\end{itemize}
+
+\noindent
+getEdges():\\
+\textit{Returns the edges included in the minimum spanning tree}
+\begin{itemize}
+output: $out := \mbox{edges}$
+\end{itemize}
+
+\noindent
+toString():\\
+\textit{Java's toString override, shows edges that are in the minimum spanning tree
+as a string representation.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
 \subsection{UML State Machine Diagrams}
 The diagrams below are UML State Machine Diagrams for KMeans and KruskalMST
 

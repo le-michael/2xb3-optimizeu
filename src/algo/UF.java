@@ -3,11 +3,22 @@ package algo;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Create a UF object to compute Union Find on a set of given
+ * @author duttonl
+ *
+ */
+
 public class UF{
 	private int[] parent;
 	private int[] size;
 	private HashMap<Cord,Integer> dict;
 	
+	/**
+	 * Constructor for a union find object
+	 * @param k the number of nodes
+	 * @param means an array storing all the nodes
+	 */
 	public UF(int k, ArrayList<Cord> means) {
 		parent = new int[k];
 		for (int i = 0; i < k; i++) parent[i] = i;
@@ -22,15 +33,30 @@ public class UF{
 		}
 	}
 	
+	/**
+	 * Determine whether two nodes are connected
+	 * @param p the first node
+	 * @param q the second node
+	 * @return a boolean stating whether or not node p and q are connected
+	 */
 	public boolean connected(Cord p, Cord q) { return find(p) == find(q); }
 	
-	// Assuming comparison by object reference NOT VALUE
+	/**
+	 * Find the parent of a given node
+	 * @param p the node being passed in
+	 * @return the parent of a node
+	 */
 	public int find(Cord p) {
 		int i = dict.get(p);
 		while (i != parent[i]) i = parent[i];
 		return i;
 	}
 	
+	/**
+	 * Combine two nodes into one group
+	 * @param p the first node
+	 * @param q the second node
+	 */
 	public void union(Cord p, Cord q) {
 		int i = find(p);
 		int j = find(q);

@@ -15,6 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.SwingConstants;
 
+/**
+ * Create a GUI to display the data calculated by the algorithms of OptimizeU 
+ * @author Michael Le
+ *
+ */
+
 public class demoFrame extends javax.swing.JFrame{
 
 	private static final long serialVersionUID = 1L;
@@ -36,6 +42,13 @@ public class demoFrame extends javax.swing.JFrame{
 	private HashMap<Integer,Edge[]> allEdge;
 	HashMap<Integer,ArrayList<Cord>> cords;
 	
+	/**
+	 * A constructor to generate the GUI of OptimizeU 
+	 * @param clusters the cluster data being passed in
+	 * @param e the edges for kruskal
+	 * @param ae the edges connecting all the nodes
+	 * @param c	the data storing all the points for a given time  
+	 */
 	public demoFrame(HashMap<Integer,Cluster[]> clusters,
 					HashMap<Integer,Edge[]> e,
 					HashMap<Integer,Edge[]> ae,

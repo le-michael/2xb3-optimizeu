@@ -9,7 +9,11 @@ import java.awt.geom.Line2D;
 import java.util.HashMap;
 
 import javax.swing.JComponent;
-
+/**
+ * The draw component for the GUI
+ * @author Michael Le
+ *
+ */
 public class drawSurface extends JComponent {
 	private final int WIDTH;
 	private final int HEIGHT;
@@ -21,7 +25,13 @@ public class drawSurface extends JComponent {
 	
 	private boolean showMST = false;
 	
-	
+	/**
+	 * Create the draw surface where all data is drawn
+	 * @param clusters the cluster data being passed in
+	 * @param e the edges for kruskal
+	 * @param ae the edges connecting all the nodes
+	 * @param t the current time being drawn
+	 */
 	public drawSurface(HashMap<Integer,Cluster[]> clusters,HashMap<Integer,Edge[]> e,HashMap<Integer,Edge[]> ae,int t){
 		allEdge = ae;
 		edges = e;
@@ -32,6 +42,9 @@ public class drawSurface extends JComponent {
 		setPreferredSize(new Dimension(WIDTH,HEIGHT));
 	}
 	
+	/**
+	 * Draw the component
+	 */
     @Override
     public void paintComponent(Graphics g) {
     	Graphics2D g2 = (Graphics2D) g;

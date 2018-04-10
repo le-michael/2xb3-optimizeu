@@ -6,18 +6,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Load {
-	
-	//Cord data;
-	//Cord maxima;
-	//Cord minima;
+/**
+ * Create a Load object that parses and stores given data
+ * @author Michael Le
+ *
+ */
 
+
+public class Load {
 	private Cord maxima;
 	private Cord minima;
 	
 	HashMap<Integer,ArrayList<Cord>> data;
 	
-	
+	/**
+	 * Parse and normalize the data to be represented on a pixel display
+	 */
 	public Load() {
 		maxima = new Cord(Double.MIN_VALUE,Double.MIN_VALUE);
 		minima = new Cord(Double.MAX_VALUE,Double.MAX_VALUE);
@@ -60,6 +64,10 @@ public class Load {
 		normalizeData();
 	}
 	
+	/**
+	 * Get the HashMap storing data corresponding to a time key
+	 * @return the data HashMap
+	 */
 	public HashMap<Integer,ArrayList<Cord>> getData(){
 		return data;
 	}
@@ -84,7 +92,4 @@ public class Load {
 		
 	}
 	
-
-		
-
 }

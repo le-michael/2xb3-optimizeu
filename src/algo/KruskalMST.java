@@ -1,9 +1,18 @@
 package algo;
 
+/**
+ * Create an KruskalMST object to compute the MST of a given graph
+ * @author duttonl
+ *
+ */
+
 public class KruskalMST {
 	
 	private Edge[] edges;
-	
+	/**
+	 * Constructor for a Kruskal object
+	 * @param G the graph that Kruskal will run on
+	 */
 	public KruskalMST(Graph G) {
 		G.sortEdges();
 		UF uf = new UF(G.Centroids(),G.points());
@@ -17,8 +26,15 @@ public class KruskalMST {
 		}
 	}
 	
+	/**
+	 * Get the edges that form a MST
+	 * @return the calculated edges
+	 */
 	public Edge[] getEdges() { return edges; }
 	
+	/**
+	 * Convert the MST to string format
+	 */
 	public String toString() {
 		String s = "";
 		for (int i = 0; i < edges.length; i++)

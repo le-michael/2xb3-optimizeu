@@ -10,7 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * @author amora
+ * @author Omar Elemary
  *
  */
 public class KMeansTest {

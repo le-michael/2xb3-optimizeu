@@ -13,7 +13,6 @@ import org.junit.Test;
  * @author Omar Elemary
  *
  */
-
 public class ClusterTest {
 
 	/**

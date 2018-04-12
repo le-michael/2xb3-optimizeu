@@ -1,6 +1,8 @@
 \documentclass[12pt]{article}
 
 \usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage{amsfonts}
 \usepackage{fullpage}
 \usepackage{booktabs}
@@ -122,7 +124,7 @@ Lucas Dutton & 400052930 & Log Admin, Algorithms Implementation\\
 \hline
 Saad Khan & 400085498 & Documentation Designer, Server Researcher\\ 
 \hline
-Omar Elemary & 400100169 & Algorithms Researcher, Log Assistant\\ 
+Omar Elemary & 400100169 & Algorithms Researcher, Test\\ 
 \hline
 \end{tabular}
 \end{table}
@@ -263,10 +265,18 @@ output from the algorithms and display it on a graphic canvas.
 \newpage
 \subsubsection{Uses Relation}
 An overlay of the application can be viewed in the Uses relationship below:
-
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{UsesDiagram.png}
+\end{figure}
 \newpage
+
 \subsubsection{UML Class Diagram}
 An overlay of the application can be viewed in the UML class diagram below:
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{UML.png}
+\end{figure}
 
 \newpage
 \subsection{Module Interface Specification}
@@ -1285,9 +1295,24 @@ drawSurface, Load
 \newpage
 
 \subsection{UML State Machine Diagrams}
-The diagrams below are UML State Machine Diagrams for KMeans and KruskalMST
+The diagram below is the UML State Machine Diagram for KMeans.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{KMeansSM.png}
+\end{figure}
 
 \newpage
+
+The diagram below is the UML State Machine Diagram for KruskalMST.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{KruskalSM.png}
+\end{figure}
+
+\newpage
+
 \section{Internal Review and Evaluation}
 
 The internal review and evaluation process addresses two important factors of any 
@@ -1306,15 +1331,16 @@ case will also obey module interface specification limits and assumptions: For e
 a negative number will not be tested on a function that only accepts $\mathbb{N}$.
 
 \begin{itemize}
-\item Cord
-\item Cluster
-\item KMeans
-\item Edge
-\item Graph
-\item Heap
-\item UF
-\item KruskalMST
-\item Load
+\item Cord - Emphasis on constructor, accessor and mutator methods testing.
+\item Cluster - Emphasis on constructor, accessor and mutator methods testing.
+\item KMeans - Relatively black-boxed approach to testing; Only cluster size verified.
+\item Edge - Emphasis on constructor, accessor and mutator methods, as well as comparison
+of weights between edges.
+\item Graph - Test of properly initialized edges based on points passed into the ADT
+\item Heap - Test of proper helper functions, and verification of sorting.
+\item UF - Verify union-find  methods are working as expected.
+\item KruskalMST - Verify that the constructed MST is optimal.
+\item Load - Test that Load functions, and countsort/hash tables are initiated.
 \end{itemize}
 
 \newpage

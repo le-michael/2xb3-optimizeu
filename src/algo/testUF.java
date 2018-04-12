@@ -15,7 +15,7 @@ import org.junit.Test;
  * @author Omar Elemary
  *
  */
-public class UFTest {
+public class testUF {
 
 	/**
 	 * @throws java.lang.Exception

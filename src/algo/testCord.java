@@ -13,7 +13,7 @@ import org.junit.Test;
  * @author Omar Elemary
  *
  */
-public class CordTest {
+public class testCord {
 	
 	/**
 	 * @throws java.lang.Exception

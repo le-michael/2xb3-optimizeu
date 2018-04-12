@@ -5,21 +5,27 @@ package algo;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * @author Omar Elemary
+ * @author duttonl
  *
  */
-public class KMeansTest {
+public class testKMeans {
 
+	private static Cord[] testArray = { new Cord(1,2), new Cord(5,6), new Cord(2,3), new Cord(6,9) };
+	private static ArrayList<Cord> testPoints;
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	public static void setUp() throws Exception {
+		testPoints = new ArrayList<Cord>(Arrays.asList(testArray));
 	}
 
 	/**
@@ -34,7 +40,9 @@ public class KMeansTest {
 	 */
 	@Test
 	public void testAssignToClusters() {
-		fail("Not yet implemented");
+		ArrayList<Cord> centroids = KMeans.calculateMeans(2, 4, testPoints, 10000);
+		Cluster[] clusters = KMeans.assignToClusters(centroids,testPoints,2);
+		assertTrue(clusters.length == 2);
 	}
 
 	/**
@@ -42,7 +50,9 @@ public class KMeansTest {
 	 */
 	@Test
 	public void testCalculateMeans() {
-		fail("Not yet implemented");
+		// Two-cluster k-means
+		ArrayList<Cord> centroids = KMeans.calculateMeans(2, 4, testPoints, 10000);
+		assertTrue(centroids.size() == 2);
 	}
 
 }

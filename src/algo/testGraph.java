@@ -15,7 +15,7 @@ import org.junit.Test;
  * @author Omar Elemary
  *
  */
-public class GraphTest {
+public class testGraph {
 
 	private static Graph G1;
 	private static Graph G2;

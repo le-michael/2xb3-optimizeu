@@ -15,7 +15,7 @@ import org.junit.Test;
  * @author Omar Elemary
  *
  */
-public class KruskalMSTTest {
+public class testKruskalMST {
 	
 	private static Graph G;
 	private static KruskalMST krusk;

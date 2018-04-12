@@ -1,0 +1,365 @@
+commit 4f7e746c67c373edcd56e8a5cb49c70d049c8ed4
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Sat Mar 31 22:19:24 2018 -0400
+
+    Clean up
+
+commit 7beb0a8650e2b8ce99e831fc330b0d1580b9440c
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Sat Mar 31 22:13:36 2018 -0400
+
+    Fully finished gui
+
+commit f27d3ba59e003d402893ac9d73a886d4e8785cf1
+Merge: a532f88 1c0247c
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Sat Mar 31 20:09:20 2018 -0400
+
+    Merge branch 'master' of https://github.com/le-michael/2xb3-optimizeu
+
+commit a532f88a49a11c6d588268abbc0c3466e2e4fa00
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Sat Mar 31 20:08:53 2018 -0400
+
+    gui update
+
+commit 1c0247c32ed68620c708253ae81e00fde4fe6b84
+Author: Saad <thesaadfather@gmail.com>
+Date:   Sat Mar 31 01:47:31 2018 -0400
+
+    Pushing Slides
+
+commit 11e3a41d66abe191d4a4f08b690a003427515247
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Sat Mar 31 01:11:29 2018 -0400
+
+    Load and Display conversion
+
+commit b86d309f9c3749eb242e804085462dd842cf9dc2
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Fri Mar 30 23:58:53 2018 -0400
+
+    Updated Kruskal and dependencies to ArrayList
+
+commit 2c697258561c6c2ebcf3d9867e00bc7621b4b094
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Fri Mar 30 23:40:30 2018 -0400
+
+    KMeans with ArrayList updated
+
+commit 81d9cf5a170ad3135f3baba2fba007df7499b6d0
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Fri Mar 30 23:03:08 2018 -0400
+
+    New cluster and new cord
+
+commit 8ae247773b5d387aca51fc12aff56463aba92463
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Fri Mar 30 22:50:22 2018 -0400
+
+    Clean slate
+
+commit 835b70d28217c4747851d2cce6d2fb09f179e13f
+Author: Omar <oelemary@gmail.com>
+Date:   Thu Mar 29 20:18:22 2018 -0400
+
+    Meeting9
+
+commit 4cb6f90f02bcf7a55a698b46ad3e4f6ff2492e76
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Thu Mar 29 19:30:27 2018 -0400
+
+    Updated draft
+
+commit 5ca76ec84b6dffbc3ea574cc689f610d2df9bb20
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Wed Mar 28 21:37:03 2018 -0400
+
+    added presentation draft in docs dir
+
+commit 6e50f8d337821d37d99c74a975744fc130575ad5
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Wed Mar 28 21:13:03 2018 -0400
+
+    readme
+
+commit 1d119826e40b0b745c3906d1e83145bbdc7c1291
+Merge: 55333e5 d333ae6
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Wed Mar 28 21:10:54 2018 -0400
+
+    Merge branch 'master' of https://github.com/le-michael/2xb3-optimizeu
+
+commit 55333e51d3d2b61057f63929061d91ff3765f6b1
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Wed Mar 28 21:10:03 2018 -0400
+
+    readme
+
+commit d333ae60082742033a6b2c7b89dcd26daaefd95e
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Wed Mar 28 20:24:48 2018 -0400
+
+    Unit testing added to TODO
+
+commit 0fa22584311fe312eab0744fd6762c85ea790cdc
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Wed Mar 28 17:00:10 2018 -0400
+
+    Updated README
+
+commit 469a795a3195ab28ec7880dc17128658cae00227
+Author: Omar <oelemary@gmail.com>
+Date:   Fri Mar 23 10:03:35 2018 -0400
+
+    Meeting8
+
+commit 065793face845b0689bdaa4fbc0f75324754abc1
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Sun Mar 18 20:23:29 2018 -0400
+
+    Proper coordinate normalization + Data visualization
+
+commit b77cdda1ec1ae7064d8d9555d4815e5430d96a3b
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Fri Mar 16 09:41:38 2018 -0400
+
+    Added meetings
+
+commit 5952707dc9c9506376c190a8f16164f6c00f056a
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Fri Mar 16 09:18:56 2018 -0400
+
+    Project Proposal
+
+commit 63777bace85dcdcbc74eb8d16be1b73032387ee8
+Merge: 204b8af 3a5b1be
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Thu Mar 15 11:39:24 2018 -0400
+
+    Merge branch 'master' of https://github.com/le-michael/2xb3-optimizeu
+
+commit 204b8af524060732303f8d2128dc0498d31ac594
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Thu Mar 15 11:36:42 2018 -0400
+
+    Added Kruskals with custom ADTs
+
+commit 3a5b1bedd3e61042a6d9c352f8089356f282bc86
+Author: Omar Elemary <elemaryo@mcmaster.ca>
+Date:   Wed Mar 14 23:10:21 2018 -0400
+
+    cord commented
+
+commit 0249c0463c62c42756c0ba1823ab068c996fa203
+Merge: 765a08b 06d1ccb
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Wed Mar 14 21:49:44 2018 -0400
+
+    Merge branch 'master' of https://github.com/le-michael/2xb3-optimizeu
+
+commit 765a08b341739f8a817d81107981dcfbc0566358
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Wed Mar 14 21:49:22 2018 -0400
+
+    Load fix
+
+commit 06d1ccb6447265c84e98b083aa38e69dc4e43ed4
+Author: Omar Elemary <elemaryo@mcmaster.ca>
+Date:   Wed Mar 14 20:54:49 2018 -0400
+
+    Meeting6
+
+commit b115a172c68d12c50315d19d51814b6dfc33fddc
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Wed Mar 14 20:50:31 2018 -0400
+
+    normalized to 500
+
+commit 56dfb224b1e149bd0564b6e7a15eae0cbca52680
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Wed Mar 14 20:48:07 2018 -0400
+
+    initial normalize added
+
+commit 67854df60afc24029479fbaa4f9ca17c733dbc60
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Wed Mar 14 00:19:27 2018 -0400
+
+    Fixed kmeans
+
+commit 5e07ae2f42057d79c28d753e975fae3d04b76c0c
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Wed Mar 14 00:03:23 2018 -0400
+
+    Minor changes
+
+commit 51300a97e47ea1405b1c9333929e57da4127400e
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Tue Mar 13 22:24:33 2018 -0400
+
+    Class for loading data set
+
+commit f91ad01a1f674e282d9d9e9118fa7354494d6319
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Tue Mar 13 22:20:22 2018 -0400
+
+    Updated to linked list Cords
+
+commit 0ba7b8cea753138d1dbf80efe996bc500ee8e2d9
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Fri Mar 9 11:19:48 2018 -0500
+
+    updated docs
+
+commit cc8d367a1af48cb22df2d3c153a98fc26315ddbd
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Thu Mar 8 16:06:35 2018 -0500
+
+    Updated readme
+
+commit 736305b42c9dbd65b0753f0d92c20e2f1e014d6b
+Merge: 33801f1 5cbde85
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Tue Mar 6 13:18:28 2018 -0500
+
+    Merge branch 'master' of https://github.com/le-michael/2xb3-optimizeu
+
+commit 33801f1ef00d377107486db96e7fc582070ec152
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Tue Mar 6 13:17:30 2018 -0500
+
+    Fixed Kruskals
+
+commit 6d568fbafebd5f10d557d828710293c8363b143d
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Tue Mar 6 17:01:54 2018 -0500
+
+    Background colour
+
+commit 328f125652a31dd2503641b99c6ff87b3efc6f57
+Merge: 6e63dc3 a06041a
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Tue Mar 6 16:52:44 2018 -0500
+
+    Merge branch 'master' of https://github.com/le-michael/2xb3-optimizeu
+
+commit 6e63dc33d44062f4b5f26e189c3290743e3c384e
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Tue Mar 6 16:52:11 2018 -0500
+
+    Display K-Means
+
+commit 5cbde859eccedc18a0e20231f8084556309ae178
+Author: Saad <thesaadfather@gmail.com>
+Date:   Tue Mar 6 12:06:27 2018 -0500
+
+    Dijkstra
+
+commit a06041a5d3101e6d0287d311d82c755cabebc6b4
+Author: Saad <thesaadfather@gmail.com>
+Date:   Tue Mar 6 11:43:39 2018 -0500
+
+    Dijkstra
+
+commit 22251014dc653cf258be560af0fe94ab6ccd2370
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Tue Mar 6 11:24:10 2018 -0500
+
+    Emptied main method
+
+commit 99990facd2d0f5ec84d86fce5da324dfcbb7cfac
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Tue Mar 6 11:16:20 2018 -0500
+
+    Updated to ADTs
+
+commit 4b0a72bce189e4ad8bd75e9dfcaf4343369c1553
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Tue Mar 6 14:49:04 2018 -0500
+
+    Animation
+
+commit 7d928e70f10d4d908ac61a12ff6d6411f62218ed
+Author: Omar Elemary <elemaryo@mcmaster.ca>
+Date:   Tue Mar 6 07:32:24 2018 -0500
+
+    Unfunctional Kruskal
+
+commit 00e0473b79db337291f0aedf32d47966337b9116
+Author: le-michael <lem12@mcmaster.ca>
+Date:   Tue Mar 6 00:20:35 2018 -0500
+
+    Cord and Cluster ADT | Basic Display
+
+commit fce89457f20fed11d591fba127f6d0035cb7c5b6
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Mon Mar 5 21:01:33 2018 -0500
+
+    Added hidden dependencies
+
+commit adb0a2fadb494e1a88eec340224fb9149f96eea8
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Sat Mar 3 18:01:19 2018 -0500
+
+    removed test class file
+
+commit 3fec7d578a60192edbfd238bae3d08b989c6432b
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Sat Mar 3 17:54:15 2018 -0500
+
+    Fully added comments and unit testing in main method
+
+commit 32a141ccf282cf8a5ffd5725ef7ca511883d80d5
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Sat Mar 3 17:30:26 2018 -0500
+
+    Initial k-means and coordinates ADT
+
+commit 90af85614d8b0a86dacb52609f3e867a478a608c
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Tue Feb 27 12:18:17 2018 -0500
+
+    added Milestone1
+
+commit 33b301c33bf84e9fc01ff55bede6f0e7a42e65bb
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Tue Feb 27 12:15:05 2018 -0500
+
+    populated readme
+
+commit c677fd1122b34fb2330142c28d5084e5801970a6
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Tue Feb 27 12:14:13 2018 -0500
+
+    Added meeting minutes folder
+
+commit 8daffe3cf9594f231d7401aca8b03571293476ba
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Tue Feb 27 11:01:20 2018 -0500
+
+    Testing java commits
+
+commit 7f77082b2d7264cc647b66ce156781e04ccfdb28
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Tue Feb 27 10:58:30 2018 -0500
+
+    added src folder
+
+commit 3aa5cffc3768973d9323bdd126545688337c1cdf
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Mon Feb 26 20:34:06 2018 -0500
+
+    Added helpful readme
+
+commit 6c1e97dce4b6d9a60fc9c23689a20e5489e8aa63
+Author: Necried <duttonl@mcmaster.ca>
+Date:   Mon Feb 26 20:28:02 2018 -0500
+
+    added docs directory
+
+commit a748c1a6482f27b152745485942452f59440b7ca
+Author: Michael Le <lem12@mcmaster.ca>
+Date:   Mon Feb 26 20:15:07 2018 -0500
+
+    Initial commit

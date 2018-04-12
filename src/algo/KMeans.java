@@ -174,25 +174,6 @@ public class KMeans {
 				belongs[count] = index;
 				count++;
 			}
-			/**
-			for (int i = 0; i < items.length; i++) {
-				item = items[i];
-				
-				// Classify the item to the closest mean point
-				int index = classify(means, item);
-				
-				// Update corresponding cluster size
-				clusterSizes[index]++;
-				
-				// Update mean
-				means[index] = updateMean(clusterSizes[index],means[index],item);
-				
-				// Item changed cluster
-	            if (index != belongs[i]) noChanges = false;
-				belongs[i] = index;
-				
-			}
-			**/
 			// break out of k-means algorithm if there are no changes to clusters
 			if (noChanges) break;
 		}

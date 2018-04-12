@@ -13,7 +13,7 @@ import org.junit.Test;
  * @author Omar Elemary
  *
  */
-public class ClusterTest {
+public class testCluster {
 
 	/**
 	 * @throws java.lang.Exception

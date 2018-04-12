@@ -13,7 +13,7 @@ import org.junit.Test;
  * @author Omar Elemary
  *
  */
-public class EdgeTest {
+public class testEdge {
 
 	/**
 	 * @throws java.lang.Exception
